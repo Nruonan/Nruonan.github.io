@@ -421,7 +421,7 @@
 <h3 id="2-JVM、JDK-和-JRE-有什么区别？"><a href="#2-JVM、JDK-和-JRE-有什么区别？" class="headerlink" title="2.JVM、JDK 和 JRE 有什么区别？"></a>2.JVM、JDK 和 JRE 有什么区别？</h3><p><strong>JVM</strong>：Java Virtual Machine，Java 虚拟机，Java 程序运行在 Java 虚拟机上。针对不同系统的实现（Windows，Linux，macOS）不同的 JVM，因此 Java 语言可以实现跨平台。</p>
 <p><strong>JRE</strong>： Java 运⾏时环境。它是运⾏已编译 Java 程序所需的所有内容的集合，包括 Java 虚拟机（JVM），Java 类库，Java 命令和其他的⼀些基础构件。但是，它不能⽤于创建新程序。</p>
 <p><strong>JDK</strong>: Java Development Kit，它是功能⻬全的 Java SDK。它拥有 JRE 所拥有的⼀切，还有编译器（javac）和⼯具（如 javadoc 和 jdb）。它能够创建和编译程序。</p>
-<p><a target="_blank" rel="noopener" href="https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png">https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png</a></p>
+<p><img src="https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-3.png" alt="JDK、JRE、JVM关系"></p>
 <h3 id="3-什么是字节码？采用字节码的好处是什么"><a href="#3-什么是字节码？采用字节码的好处是什么" class="headerlink" title="3.什么是字节码？采用字节码的好处是什么?"></a>3.什么是字节码？采用字节码的好处是什么?</h3><p>所谓的字节码，就是 Java 程序经过编译之类产生的.class 文件，字节码能够被虚拟机识别，从而实现 Java 程序的跨平台性。</p>
 <p><strong>Java</strong> 程序从源代码到运行主要有三步：</p>
 <ul>
@@ -457,7 +457,19 @@
 <h3 id="7-Java-语言关键字有哪些？"><a href="#7-Java-语言关键字有哪些？" class="headerlink" title="7.Java 语言关键字有哪些？"></a>7.Java 语言关键字有哪些？</h3><p><img src="C:\Users\Nruonan\AppData\Roaming\Typora\typora-user-images\image-20240226181557103.png" alt="image-20240226181557103"></p>
 <h3 id="8-自增自减运算符"><a href="#8-自增自减运算符" class="headerlink" title="8.自增自减运算符"></a>8.自增自减运算符</h3><p>在写代码的过程中，常见的一种情况是需要某个整数类型变量增加 1 或减少 1，Java 提供了一种特殊的运算符，用于这种表达式，叫做自增运算符（++)和自减运算符（–）。</p>
 <p>++ 和 – 运算符可以放在变量之前，也可以放在变量之后，当运算符放在<strong>变量之前</strong>时(前缀)，<strong>先自增&#x2F;减</strong>，<strong>再赋值</strong>；当运算符放在<strong>变量之后</strong>时(后缀)，<strong>先赋值，再自增&#x2F;减</strong>。例如，当 <code>b = ++a</code> 时，先自增（自己增加 1），再赋值（赋值给 b）；当 <code>b = a++</code> 时，先赋值(赋值给 b)，再自增（自己增加 1）。也就是，++a 输出的是 a+1 的值，a++输出的是 a 值。用一句口诀就是：“<strong>符号在前就先加&#x2F;减，符号在后就后加&#x2F;减</strong>”。</p>
-<h3 id="9-移位运算符"><a href="#9-移位运算符" class="headerlink" title="9.移位运算符"></a>9.移位运算符</h3>
+<h3 id="9-移位运算符"><a href="#9-移位运算符" class="headerlink" title="9.移位运算符"></a>9.移位运算符</h3><p>在 Java 代码里使用 <code>&lt;&lt;</code>、 <code>&gt;&gt;</code> 和<code>&gt;&gt;&gt;</code>转换成的指令码运行起来会更高效些。</p>
+<p>掌握最基本的移位运算符知识还是很有必要的，这不光可以帮助我们在代码中使用，还可以帮助我们理解源码中涉及到移位运算符的代码。</p>
+<p>Java 中有三种移位运算符：</p>
+<p><img src="https://oss.javaguide.cn/github/javaguide/java/basis/shift-operator.png" alt="Java 移位运算符总结"></p>
+<p>Java 移位运算符总结</p>
+<ul>
+<li><code>&lt;&lt;</code> :左移运算符，向左移若干位，高位丢弃，低位补零。<code>x &lt;&lt; 1</code>,相当于 <strong>x 乘以 2</strong>(不溢出的情况下)。</li>
+<li><code>&gt;&gt;</code> :带符号右移，向右移若干位，高位补符号位，低位丢弃。正数高位补 0,负数高位补 1。<code>x &gt;&gt; 1</code>,<strong>相当于 x 除以 2。</strong></li>
+<li><code>&gt;&gt;&gt;</code> :<strong>无符号右移</strong>，忽略符号位，空位都以 0 补齐。</li>
+</ul>
+<p>由于 <code>double</code>，<code>float</code> 在二进制中的表现比较特殊，因此不能来进行移位操作。</p>
+<p>移位操作符实际上支持的类型只有<code>int</code>和<code>long</code>，编译器在对<code>short</code>、<code>byte</code>、<code>char</code>类型进行移位前，都会将其转换为<code>int</code>类型再操作。</p>
+
                 
             </div>
             <hr/>
