@@ -421,7 +421,7 @@
 <h3 id="2-JVM、JDK-和-JRE-有什么区别？"><a href="#2-JVM、JDK-和-JRE-有什么区别？" class="headerlink" title="2.JVM、JDK 和 JRE 有什么区别？"></a>2.JVM、JDK 和 JRE 有什么区别？</h3><p><strong>JVM</strong>：Java Virtual Machine，Java 虚拟机，Java 程序运行在 Java 虚拟机上。针对不同系统的实现（Windows，Linux，macOS）不同的 JVM，因此 Java 语言可以实现跨平台。</p>
 <p><strong>JRE</strong>： Java 运⾏时环境。它是运⾏已编译 Java 程序所需的所有内容的集合，包括 Java 虚拟机（JVM），Java 类库，Java 命令和其他的⼀些基础构件。但是，它不能⽤于创建新程序。</p>
 <p><strong>JDK</strong>: Java Development Kit，它是功能⻬全的 Java SDK。它拥有 JRE 所拥有的⼀切，还有编译器（javac）和⼯具（如 javadoc 和 jdb）。它能够创建和编译程序。</p>
-<p><img src="https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png" alt="JDK 包含 JRE"></p>
+<p><a target="_blank" rel="noopener" href="https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png">https://oss.javaguide.cn/github/javaguide/java/basis/jdk-include-jre.png</a></p>
 <h3 id="3-什么是字节码？采用字节码的好处是什么"><a href="#3-什么是字节码？采用字节码的好处是什么" class="headerlink" title="3.什么是字节码？采用字节码的好处是什么?"></a>3.什么是字节码？采用字节码的好处是什么?</h3><p>所谓的字节码，就是 Java 程序经过编译之类产生的.class 文件，字节码能够被虚拟机识别，从而实现 Java 程序的跨平台性。</p>
 <p><strong>Java</strong> 程序从源代码到运行主要有三步：</p>
 <ul>
@@ -429,8 +429,8 @@
 <li><strong>解释</strong>：虚拟机执行 Java 字节码，将字节码翻译成机器能识别的机器码</li>
 <li><strong>执行</strong>：对应的机器执行二进制机器码</li>
 </ul>
-<p><img src="https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-4.png" alt="Java程序执行过程">Java程序执行过程</p>
-<p>只需要把 Java 程序编译成 Java 虚拟机能识别的 Java 字节码，不同的平台安装对应的 Java 虚拟机，这样就可以可以实现 Java 语言的平台无关性。</p>
+<p><img src="https://cdn.tobebetterjavaer.com/tobebetterjavaer/images/sidebar/sanfene/javase-4.png" alt="Java程序执行过程"></p>
+<p>Java程序执行过程只需要把 Java 程序编译成 Java 虚拟机能识别的 Java 字节码，不同的平台安装对应的 Java 虚拟机，这样就可以可以实现 Java 语言的平台无关性。</p>
 <h3 id="4-为什么说-Java-语言“编译与解释并存”"><a href="#4-为什么说-Java-语言“编译与解释并存”" class="headerlink" title="4.为什么说 Java 语言“编译与解释并存”"></a>4.为什么说 Java 语言“编译与解释并存”</h3><p>其实这个问题我们讲字节码的时候已经提到过，因为比较重要，所以我们这里再提一下。</p>
 <p>我们可以将高级编程语言按照程序的执行方式分为两种：</p>
 <ul>
