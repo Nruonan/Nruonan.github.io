@@ -691,15 +691,222 @@
 <ol start="3">
 <li>引用本类的构造函数</li>
 </ol>
-<h3 id="5-创建一个对象用什么运算符-对象实体与对象引用有何不同"><a href="#5-创建一个对象用什么运算符-对象实体与对象引用有何不同" class="headerlink" title="5.创建一个对象用什么运算符?对象实体与对象引用有何不同?"></a>5.<a href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%94%A8%E4%BB%80%E4%B9%88%E8%BF%90%E7%AE%97%E7%AC%A6-%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BD%93%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">创建一个对象用什么运算符?对象实体与对象引用有何不同?</a></h3><p>new 运算符，new 创建对象实例（对象实例在堆内存中），对象引用指向对象实例（对象引用存放在栈内存中）。</p>
+<h3 id="5-创建一个对象用什么运算符-对象实体与对象引用有何不同"><a href="#5-创建一个对象用什么运算符-对象实体与对象引用有何不同" class="headerlink" title="5.创建一个对象用什么运算符?对象实体与对象引用有何不同?"></a>5.创建一个对象用什么运算符?对象实体与对象引用有何不同?</h3><p>new 运算符，new 创建对象实例（对象实例在堆内存中），对象引用指向对象实例（对象引用存放在栈内存中）。</p>
 <ul>
 <li>一个对象引用可以指向 0 个或 1 个对象（一根绳子可以不系气球，也可以系一个气球）；</li>
 <li>一个对象可以有 n 个引用指向它（可以用 n 条绳子系住一个气球）。</li>
 </ul>
-<h3 id="对象的相等和引用相等的区别"><a href="#对象的相等和引用相等的区别" class="headerlink" title="对象的相等和引用相等的区别"></a><a href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%9B%B8%E7%AD%89%E5%92%8C%E5%BC%95%E7%94%A8%E7%9B%B8%E7%AD%89%E7%9A%84%E5%8C%BA%E5%88%AB">对象的相等和引用相等的区别</a></h3><ul>
+<h3 id="对象的相等和引用相等的区别"><a href="#对象的相等和引用相等的区别" class="headerlink" title="对象的相等和引用相等的区别"></a>对象的相等和引用相等的区别</h3><ul>
 <li>对象的相等一般比较的是内存中存放的内容是否相等。</li>
 <li>引用相等一般比较的是他们指向的内存地址是否相等。</li>
 </ul>
+<h3 id="6-如果一个类没有声明构造方法，该程序能正确执行吗"><a href="#6-如果一个类没有声明构造方法，该程序能正确执行吗" class="headerlink" title="6.如果一个类没有声明构造方法，该程序能正确执行吗?"></a>6.如果一个类没有声明构造方法，该程序能正确执行吗?</h3><p>构造方法是一种特殊的方法，主要作用是完成对象的初始化工作。</p>
+<p>如果一个类没有声明构造方法，也可以执行！因为一个类即使没有声明构造方法也会有默认的不带参数的构造方法。</p>
+<p><strong>注意：如果我们自己添加了类的构造方法（无论是否有参），Java 就不会添加默认的无参数的构造方法了。</strong></p>
+<h3 id="7-构造方法有哪些特点？是否可被-override"><a href="#7-构造方法有哪些特点？是否可被-override" class="headerlink" title="7.构造方法有哪些特点？是否可被 override?"></a>7.构造方法有哪些特点？是否可被 override?</h3><p>构造方法特点如下：</p>
+<ul>
+<li>名字与类名相同。</li>
+<li>没有返回值，但不能用 void 声明构造函数。</li>
+<li>生成类的对象时自动执行，无需调用。</li>
+</ul>
+<p>构造方法不能被 override（重写）,但是可以 overload（重载）,所以你可以看到一个类中有多个构造函数的情况</p>
+<h3 id="8-接口和抽象类有什么共同点和区别？"><a href="#8-接口和抽象类有什么共同点和区别？" class="headerlink" title="8.接口和抽象类有什么共同点和区别？"></a>8.接口和抽象类有什么共同点和区别？</h3><p><strong>共同点</strong>：</p>
+<ul>
+<li>都不能被实例化。</li>
+<li>都可以包含抽象方法。</li>
+<li>都可以有默认实现的方法（Java 8 可以用 <code>default</code> 关键字在接口中定义默认方法）。</li>
+</ul>
+<p><strong>区别</strong>：</p>
+<ul>
+<li>接口主要用于对类的行为进行约束，你实现了某个接口就具有了对应的行为。抽象类主要用于代码复用，强调的是所属关系。</li>
+<li>一个类只能继承一个类，但是可以实现多个接口。</li>
+<li>接口中的成员变量只能是 <code>public static final</code> 类型的，不能被修改且必须有初始值，而抽象类的成员变量默认 default，可在子类中被重新定义，也可被重新赋值。</li>
+</ul>
+<h3 id="9-访问修饰符-public、private、protected、以及不写（默认）时的区别？"><a href="#9-访问修饰符-public、private、protected、以及不写（默认）时的区别？" class="headerlink" title="9.访问修饰符 public、private、protected、以及不写（默认）时的区别？"></a>9.访问修饰符 public、private、protected、以及不写（默认）时的区别？</h3><p>Java 中，可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。</p>
+<ul>
+<li><strong>default</strong> (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。可以修饰在类、接口、变量、方法。</li>
+<li><strong>private</strong> : 在同一类内可见。可以修饰变量、方法。<strong>注意：不能修饰类（外部类）</strong></li>
+<li><strong>public</strong> : 对所有类可见。可以修饰类、接口、变量、方法</li>
+<li><strong>protected</strong> : 对同一包内的类和所有子类可见。可以修饰变量、方法。<strong>注意：不能修饰类（外部类）</strong>。</li>
+</ul>
+<p><img src="/2024/02/26/java-ba-gu/javase-12.png" alt="访问修饰符和可见性"></p>
+<h3 id="10-成员变量与局部变量的区别有哪些？"><a href="#10-成员变量与局部变量的区别有哪些？" class="headerlink" title="10.成员变量与局部变量的区别有哪些？"></a>10.成员变量与局部变量的区别有哪些？</h3><ol>
+<li><strong>从语法形式上看</strong>：成员变量是属于类的，⽽局部变量是在⽅法中定义的变量或是⽅法的参数；成员变量可以被 public , private , static 等修饰符所修饰，⽽局部变量不能被访问控制修饰符及 static 所修饰；但是，成员变量和局部变量都能被 final 所修饰。</li>
+<li><strong>从变量在内存中的存储⽅式来看</strong>：如果成员变量是使⽤ static 修饰的，那么这个成员变量是属于类的，如果没有使⽤ static 修饰，这个成员变量是属于实例的。对象存于堆内存，如果局部变量类型为基本数据类型，那么存储在栈内存，如果为引⽤数据类型，那存放的是指向堆内存对象的引⽤或者是指向常量池中的地址。</li>
+<li><strong>从变量在内存中的⽣存时间上看</strong>：成员变量是对象的⼀部分，它随着对象的创建⽽存在，⽽局部变量随着⽅法的调⽤⽽⾃动消失。</li>
+<li><strong>成员变量如果没有被赋初值</strong>：则会⾃动以类型的默认值⽽赋值（⼀种情况例外:被 final 修饰的成员变量也必须显式地赋值），⽽局部变量则不会⾃动赋值</li>
+</ol>
+<h3 id="11-静态变量和实例变量的区别？静态方法、实例方法呢？"><a href="#11-静态变量和实例变量的区别？静态方法、实例方法呢？" class="headerlink" title="11.静态变量和实例变量的区别？静态方法、实例方法呢？"></a>11.静态变量和实例变量的区别？静态方法、实例方法呢？</h3><blockquote>
+<p>静态变量和实例变量的区别？</p>
+</blockquote>
+<p><strong>静态变量:</strong> 是被 static 修饰符修饰的变量，也称为类变量，它属于类，不属于类的任何一个对象，一个类不管创建多少个对象，静态变量在内存中有且仅有一个副本。</p>
+<p><strong>实例变量:</strong> 必须依存于某一实例，需要先创建对象然后通过对象才能访问到它。静态变量可以实现让多个对象共享内存。</p>
+<blockquote>
+<p>静态⽅法和实例⽅法有何不同?</p>
+</blockquote>
+<p>类似地。</p>
+<p><strong>静态方法</strong>：static 修饰的方法，也被称为类方法。在外部调⽤静态⽅法时，可以使⽤”<strong>类名.⽅法名</strong>“的⽅式，也可以使⽤”<strong>对象名.⽅法名</strong>“的⽅式。静态方法里不能访问类的非静态成员变量和方法。</p>
+<p><strong>实例⽅法</strong>：依存于类的实例，需要使用”<strong>对象名.⽅法名</strong>“的⽅式调用；可以访问类的所有成员变量和方法</p>
+<h3 id="12-Java-是值传递，还是引用传递？"><a href="#12-Java-是值传递，还是引用传递？" class="headerlink" title="12.Java 是值传递，还是引用传递？"></a>12.Java 是值传递，还是引用传递？</h3><p>Java 语言是<strong>值传递</strong>。Java 语言的方法调用只支持参数的值传递。当一个对象实例作为一个参数被传递到方法中时，参数的值就是对该对象的引用。对象的属性可以在被调用过程中被改变，但对对象引用的改变是不会影响到调用者的。</p>
+<p>JVM 的内存分为堆和栈，其中栈中存储了基本数据类型和引用数据类型实例的地址，也就是对象地址。</p>
+<p>而对象所占的空间是在堆中开辟的，所以传递的时候可以理解为把变量存储的对象地址给传递过去，因此引用类型也是值传递。</p>
+<p><img src="/2024/02/26/java-ba-gu/javase-14.png" alt="Java引用数据值传递示意图"></p>
+<h3 id="深拷贝和浅拷贝区别了解吗？什么是引用拷贝？"><a href="#深拷贝和浅拷贝区别了解吗？什么是引用拷贝？" class="headerlink" title="深拷贝和浅拷贝区别了解吗？什么是引用拷贝？"></a><a href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%8C%BA%E5%88%AB%E4%BA%86%E8%A7%A3%E5%90%97-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%95%E7%94%A8%E6%8B%B7%E8%B4%9D">深拷贝和浅拷贝区别了解吗？什么是引用拷贝？</a></h3><p>关于深拷贝和浅拷贝区别，我这里先给结论：</p>
+<ul>
+<li><strong>浅拷贝</strong>：浅拷贝会在堆上创建一个新的对象（区别于引用拷贝的一点），不过，如果原对象内部的属性是引用类型的话，浅拷贝会直接复制内部对象的引用地址，也就是说拷贝对象和原对象共用同一个内部对象。</li>
+<li><strong>深拷贝</strong>：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象。</li>
+<li><strong>引用拷贝</strong>： 简单来说，引用拷贝就是两个不同的引用指向同一个对象。</li>
+</ul>
+<p><img src="/2024/02/26/java-ba-gu/shallow&deep-copy.png" alt="浅拷贝、深拷贝、引用拷贝示意图"></p>
+<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><h3 id="1-Object-类的常见方法"><a href="#1-Object-类的常见方法" class="headerlink" title="1.Object 类的常见方法?"></a>1.Object 类的常见方法?</h3><p>Object 类是一个特殊的类，是所有类的父类，也就是说所有类都可以调用它的方法。它主要提供了以下 11 个方法，大概可以分为六类：</p>
+<p><img src="/2024/02/26/java-ba-gu/javase-21.png" alt="Object类的方法"></p>
+<p><strong>对象比较</strong>：</p>
+<ul>
+<li>public native int hashCode() ：native 方法，用于返回对象的哈希码，主要使用在哈希表中，比如 JDK 中的 HashMap。</li>
+<li>public boolean equals(Object obj)：用于比较 2 个对象的内存地址是否相等，String 类对该方法进行了重写用户比较字符串的值是否相等。</li>
+</ul>
+<p><strong>对象拷贝</strong>：</p>
+<ul>
+<li>protected native Object clone() throws CloneNotSupportedException：naitive 方法，用于创建并返回当前对象的一份拷贝。一般情况下，对于任何对象 x，表达式 x.clone() !&#x3D; x 为 true，x.clone().getClass() &#x3D;&#x3D; x.getClass() 为 true。Object 本身没有实现 Cloneable 接口，所以不重写 clone 方法并且进行调用的话会发生 CloneNotSupportedException 异常。</li>
+</ul>
+<p><strong>对象转字符串：</strong></p>
+<ul>
+<li>public String toString()：返回类的名字@实例的哈希码的 16 进制的字符串。建议 Object 所有的子类都重写这个方法。</li>
+</ul>
+<p><strong>多线程调度：</strong></p>
+<ul>
+<li>public final native void notify()：native 方法，并且不能重写。唤醒一个在此对象监视器上等待的线程(监视器相当于就是锁的概念)。如果有多个线程在等待只会任意唤醒一个。</li>
+<li>public final native void notifyAll()：native 方法，并且不能重写。跟 notify 一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。</li>
+<li>public final native void wait(long timeout) throws InterruptedException：native 方法，并且不能重写。暂停线程的执行。注意：sleep 方法没有释放锁，而 wait 方法释放了锁 。timeout 是等待时间。</li>
+<li>public final void wait(long timeout, int nanos) throws InterruptedException：多了 nanos 参数，这个参数表示额外时间（以毫微秒为单位，范围是 0-999999）。 所以超时的时间还需要加上 nanos 毫秒。</li>
+<li>public final void wait() throws InterruptedException：跟之前的 2 个 wait 方法一样，只不过该方法一直等待，没有超时时间这个概念</li>
+</ul>
+<p><strong>反射：</strong></p>
+<ul>
+<li>public final native Class&lt;?&gt; getClass()：native 方法，用于返回当前运行时对象的 Class 对象，使用了 final 关键字修饰，故不允许子类重写。</li>
+</ul>
+<p><strong>垃圾回收：</strong></p>
+<ul>
+<li>protected void finalize() throws Throwable ：通知垃圾收集器回收对象。</li>
+</ul>
+<h3 id="2-和-equals-的区别"><a href="#2-和-equals-的区别" class="headerlink" title="2.&#x3D;&#x3D; 和 equals() 的区别"></a>2.&#x3D;&#x3D; 和 equals() 的区别</h3><p><strong><code>==</code></strong> 对于基本类型和引用类型的作用效果是不同的：</p>
+<ul>
+<li>对于基本数据类型来说，<code>==</code> 比较的是值。</li>
+<li>对于引用数据类型来说，<code>==</code> 比较的是对象的内存地址。</li>
+</ul>
+<blockquote>
+<p>因为 Java 只有值传递，所以，对于 &#x3D;&#x3D; 来说，不管是比较基本数据类型，还是引用数据类型的变量，其本质比较的都是值，只是引用类型变量存的值是对象的地址。</p>
+</blockquote>
+<p><strong><code>equals()</code></strong> 不能用于判断基本数据类型的变量，只能用来判断两个对象是否相等。<code>equals()</code>方法存在于<code>Object</code>类中，而<code>Object</code>类是所有类的直接或间接父类，因此所有的类都有<code>equals()</code>方法。</p>
+<p><code>Object</code> 类 <code>equals()</code> 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> (<span class="built_in">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>equals()</code> 方法存在两种使用情况：</p>
+<ul>
+<li><strong>类没有重写 <code>equals()</code>方法</strong>：通过<code>equals()</code>比较该类的两个对象时，等价于通过“&#x3D;&#x3D;”比较这两个对象，使用的默认是 <code>Object</code>类<code>equals()</code>方法。</li>
+<li><strong>类重写了 <code>equals()</code>方法</strong>：一般我们都重写 <code>equals()</code>方法来比较两个对象中的属性是否相等；若它们的属性相等，则返回 true(即，认为这两个对象相等)。</li>
+</ul>
+<p><code>String</code> 中的 <code>equals</code> 方法是被重写过的，因为 <code>Object</code> 的 <code>equals</code> 方法是比较的对象的内存地址，而 <code>String</code> 的 <code>equals</code> 方法比较的是对象的值。</p>
+<p>当创建 <code>String</code> 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 <code>String</code> 对象。</p>
+<h3 id="3-hashCode-有什么用？"><a href="#3-hashCode-有什么用？" class="headerlink" title="3.hashCode() 有什么用？"></a>3.hashCode() 有什么用？</h3><p><code>hashCode()</code> 的作用是获取哈希码（<code>int</code> 整数），也称为散列码。这个哈希码的作用是确定该对象在哈希表中的索引位置。</p>
+<p><img src="https://oss.javaguide.cn/github/javaguide/java/basis/java-hashcode-method.png" alt="hashCode() 方法">hashCode() 方法</p>
+<p><code>hashCode()</code> 定义在 JDK 的 <code>Object</code> 类中，这就意味着 Java 中的任何类都包含有 <code>hashCode()</code> 函数。另外需要注意的是：<code>Object</code> 的 <code>hashCode()</code> 方法是本地方法，也就是用 C 语言或 C++ 实现的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">native</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+
+<p>散列表存储的是键值对(key-value)，它的特点是：<strong>能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）</strong></p>
+<h3 id="4-为什么要有-hashCode？"><a href="#4-为什么要有-hashCode？" class="headerlink" title="4.为什么要有 hashCode？"></a>4.为什么要有 hashCode？</h3><p>当你把对象加入 <code>HashSet</code> 时，<code>HashSet</code> 会先计算对象的 <code>hashCode</code> 值来判断对象加入的位置，同时也会与其他已经加入的对象的 <code>hashCode</code> 值作比较，如果没有相符的 <code>hashCode</code>，<code>HashSet</code> 会假设对象没有重复出现。但是如果发现有相同 <code>hashCode</code> 值的对象，这时会调用 <code>equals()</code> 方法来检查 <code>hashCode</code> 相等的对象是否真的相同。如果两者相同，<code>HashSet</code> 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。这样我们就大大减少了 <code>equals</code> 的次数，相应就大大提高了执行速度。</p>
+<p>其实， <code>hashCode()</code> 和 <code>equals()</code>都是用于比较两个对象是否相等</p>
+<p><strong>那为什么 JDK 还要同时提供这两个方法呢？</strong></p>
+<p>这是因为在一些容器（比如 <code>HashMap</code>、<code>HashSet</code>）中，有了 <code>hashCode()</code> 之后，判断元素是否在对应容器中的效率会更高（参考添加元素进<code>HashSet</code>的过程）！</p>
+<p>我们在前面也提到了添加元素进<code>HashSet</code>的过程，如果 <code>HashSet</code> 在对比的时候，同样的 <code>hashCode</code> 有多个对象，它会继续使用 <code>equals()</code> 来判断是否真的相同。也就是说 <code>hashCode</code> 帮助我们大大缩小了查找成本。</p>
+<p><strong>那为什么不只提供 <code>hashCode()</code> 方法呢？</strong></p>
+<p>这是因为两个对象的<code>hashCode</code> 值相等并不代表两个对象就相等。</p>
+<p><strong>那为什么两个对象有相同的 <code>hashCode</code> 值，它们也不一定是相等的？</strong></p>
+<p>因为 <code>hashCode()</code> 所使用的哈希算法也许刚好会让多个对象传回相同的哈希值。越糟糕的哈希算法越容易碰撞，但这也与数据值域分布的特性有关（所谓哈希碰撞也就是指的是不同的对象得到相同的 <code>hashCode</code> )。</p>
+<p>总结下来就是：</p>
+<ul>
+<li>如果两个对象的<code>hashCode</code> 值相等，那这两个对象不一定相等（哈希碰撞）。</li>
+<li>如果两个对象的<code>hashCode</code> 值相等并且<code>equals()</code>方法也返回 <code>true</code>，我们才认为这两个对象相等。</li>
+<li>如果两个对象的<code>hashCode</code> 值不相等，我们就可以直接认为这两个对象不相等。</li>
+</ul>
+<h3 id="5-为什么重写-equals-时必须重写-hashCode-方法？"><a href="#5-为什么重写-equals-时必须重写-hashCode-方法？" class="headerlink" title="5.为什么重写 equals() 时必须重写 hashCode() 方法？"></a>5.为什么重写 equals() 时必须重写 hashCode() 方法？</h3><p>因为两个相等的对象的 <code>hashCode</code> 值必须是相等。也就是说如果 <code>equals</code> 方法判断两个对象是相等的，那这两个对象的 <code>hashCode</code> 值也要相等。</p>
+<p>如果重写 <code>equals()</code> 时没有重写 <code>hashCode()</code> 方法的话就可能会导致 <code>equals</code> 方法判断是相等的两个对象，<code>hashCode</code> 值却不相等。</p>
+<p>如果重写 <code>equals()</code> 时没有重写 <code>hashCode()</code> 方法的话，使用 <code>HashMap</code> 会出现一下新的问题</p>
+<ol>
+<li><strong>破坏了<code>hashCode</code>契约</strong>：根据Java规范，如果两个对象通过<code>equals()</code>方法比较是相等的，那么这两个对象的<code>hashCode()</code>方法必须返回相同的整数值。如果你没有重写<code>hashCode()</code>，那么即使两个对象通过<code>equals()</code>方法比较是相等的，它们也可能有不同的哈希码，因为默认的<code>hashCode()</code>方法是根据对象的内存地址生成的。</li>
+<li><strong>导致<code>HashMap</code>行为异常</strong>：当将这些对象作为键添加到<code>HashMap</code>中时，可能会出现意料之外的行为。具体来说，即使两个键通过<code>equals()</code>方法比较是相等的，它们也可能被错误地存储在哈希表的不同位置，因为它们有不同的哈希码。这意味着你可能无法通过一个等价的键来正确地检索或删除映射的值，因为<code>HashMap</code>首先会根据<code>hashCode()</code>方法返回的哈希码来定位键，然后才使用<code>equals()</code>方法来找到确切的键。</li>
+<li><strong>影响<code>HashMap</code>的性能</strong>：由于哈希码的不一致可能会导致哈希冲突增加，这会影响到<code>HashMap</code>的性能，因为增加了在同一桶内进行等值比较的次数。</li>
+</ol>
+<p><strong>总结</strong>：</p>
+<ul>
+<li><code>equals</code> 方法判断两个对象是相等的，那这两个对象的 <code>hashCode</code> 值也要相等。</li>
+<li>两个对象有相同的 <code>hashCode</code> 值，他们也不一定是相等的（哈希碰撞）。</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h3 id="1-String、StringBuffer、StringBuilder-的区别？"><a href="#1-String、StringBuffer、StringBuilder-的区别？" class="headerlink" title="1.String、StringBuffer、StringBuilder 的区别？"></a>1.String、StringBuffer、StringBuilder 的区别？</h3><p><strong>可变性</strong></p>
+<p><code>String</code> 是不可变的（后面会详细分析原因）。</p>
+<p><code>StringBuilder</code> 与 <code>StringBuffer</code> 都继承自 <code>AbstractStringBuilder</code> 类，在 <code>AbstractStringBuilder</code> 中也是使用字符数组保存字符串，不过没有使用 <code>final</code> 和 <code>private</code> 关键字修饰，最关键的是这个 <code>AbstractStringBuilder</code> 类还提供了很多修改字符串的方法比如 <code>append</code> 方法。</p>
+<p><strong>线程安全性</strong></p>
+<p><code>String</code> 中的对象是不可变的，也就可以理解为常量，线程安全。<code>AbstractStringBuilder</code> 是 <code>StringBuilder</code> 与 <code>StringBuffer</code> 的公共父类，定义了一些字符串的基本操作，如 <code>expandCapacity</code>、<code>append</code>、<code>insert</code>、<code>indexOf</code> 等公共方法。<code>StringBuffer</code> 对方法加了同步锁或者对调用的方法加了同步锁，所以是线程安全的。<code>StringBuilder</code> 并没有对方法进行加同步锁，所以是非线程安全的。</p>
+<p><strong>性能</strong></p>
+<p>每次对 <code>String</code> 类型进行改变的时候，都会生成一个新的 <code>String</code> 对象，然后将指针指向新的 <code>String</code> 对象。<code>StringBuffer</code> 每次都会对 <code>StringBuffer</code> 对象本身进行操作，而不是生成新的对象并改变对象引用。相同情况下使用 <code>StringBuilder</code> 相比使用 <code>StringBuffer</code> 仅能获得 10%~15% 左右的性能提升，但却要冒多线程不安全的风险。</p>
+<p><strong>对于三者使用的总结：</strong></p>
+<ol>
+<li>操作少量的数据: 适用 <code>String</code></li>
+<li>单线程操作字符串缓冲区下操作大量数据: 适用 <code>StringBuilder</code></li>
+<li>多线程操作字符串缓冲区下操作大量数据: 适用 <code>StringBuffer</code></li>
+</ol>
+<h3 id="2-String-为什么是不可变的"><a href="#2-String-为什么是不可变的" class="headerlink" title="2.String 为什么是不可变的?"></a>2.String 为什么是不可变的?</h3><p><code>String</code> 类中使用 <code>final</code> 关键字修饰字符数组来保存字符串，</p>
+<p>1.保存字符串的数组被 <code>final</code> 修饰且为私有的，并且<code>String</code> 类没有提供&#x2F;暴露修改这个字符串的方法。</p>
+<p>2.<code>String</code> 类被 <code>final</code> 修饰导致其不能被继承，进而避免了子类破坏 <code>String</code> 不可变。</p>
+<h3 id="3-String-equals-和-Object-equals-有何区别？"><a href="#3-String-equals-和-Object-equals-有何区别？" class="headerlink" title="3.String#equals() 和 Object#equals() 有何区别？"></a>3.String#equals() 和 Object#equals() 有何区别？</h3><p><code>String</code> 中的 <code>equals</code> 方法是被重写过的，比较的是 String 字符串的值是否相等。 <code>Object</code> 的 <code>equals</code> 方法是比较的对象的内存地址。</p>
+<h3 id="4-字符串常量池的作用了解吗"><a href="#4-字符串常量池的作用了解吗" class="headerlink" title="4.字符串常量池的作用了解吗"></a>4.字符串常量池的作用了解吗</h3><p><strong>字符串常量池</strong> 是 JVM 为了提升性能和减少内存消耗针对字符串（String 类）专门开辟的一块区域，主要目的是为了避免字符串的重复创建。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在堆中创建字符串对象”ab“</span></span><br><span class="line"><span class="comment">// 将字符串对象”ab“的引用保存在字符串常量池中</span></span><br><span class="line"><span class="type">String</span> <span class="variable">aa</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"><span class="comment">// 直接返回字符串常量池中字符串对象”ab“的引用</span></span><br><span class="line"><span class="type">String</span> <span class="variable">bb</span> <span class="operator">=</span> <span class="string">&quot;ab&quot;</span>;</span><br><span class="line">System.out.println(aa==bb);<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-String-str1-new-String-“abc”-和-String-str2-“abc”-和-区别？"><a href="#4-String-str1-new-String-“abc”-和-String-str2-“abc”-和-区别？" class="headerlink" title="4.String str1 &#x3D; new String(“abc”)和 String str2 &#x3D; “abc” 和 区别？"></a>4.String str1 &#x3D; new String(“abc”)和 String str2 &#x3D; “abc” 和 区别？</h3><p>两个语句都会去字符串常量池中检查是否已经存在 “abc”，如果有则直接使用，如果没有则会在常量池中创建 “abc” 对象。</p>
+<p><img src="/2024/02/26/java-ba-gu/javase-17.png" alt="堆与常量池中的String"></p>
+<p>但是不同的是，String str1 &#x3D; new String(“abc”) 还会通过 new String() 在堆里创建一个 “abc” 字符串对象实例。所以后者可以理解为被前者包含。</p>
+<blockquote>
+<p>String s &#x3D; new String(“abc”)创建了几个对象？</p>
+</blockquote>
+<p>很明显，一个或两个。如果字符串常量池已经有“abc”，则是一个；否则，两个。</p>
+<p>当字符创常量池没有 “abc”，此时会创建如下两个对象：</p>
+<ul>
+<li>一个是字符串字面量 “abc” 所对应的、字符串常量池中的实例</li>
+<li>另一个是通过 new String() 创建并初始化的，内容与”abc”相同的实例，在堆中</li>
+</ul>
+<h3 id="5-String-intern-方法有什么作用"><a href="#5-String-intern-方法有什么作用" class="headerlink" title="5.String#intern 方法有什么作用?"></a>5.String#intern 方法有什么作用?</h3><p><code>String.intern()</code> 是一个 native（本地）方法，其作用是将指定的字符串对象的引用保存在字符串常量池中，可以简单分为两种情况：</p>
+<ul>
+<li>如果字符串常量池中保存了对应的字符串对象的引用，就直接返回该引用。</li>
+<li>如果字符串常量池中没有保存了对应的字符串对象的引用，那就在常量池中创建一个指向该字符串对象的引用并返回。</li>
+</ul>
+<h3 id="6-String-类型的变量和常量做“-”运算时发生了什么"><a href="#6-String-类型的变量和常量做“-”运算时发生了什么" class="headerlink" title="6.String 类型的变量和常量做“+”运算时发生了什么"></a>6.String 类型的变量和常量做“+”运算时发生了什么</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;str&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;ing&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str3</span> <span class="operator">=</span> <span class="string">&quot;str&quot;</span> + <span class="string">&quot;ing&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> str1 + str2;</span><br><span class="line"><span class="type">String</span> <span class="variable">str5</span> <span class="operator">=</span> <span class="string">&quot;string&quot;</span>;</span><br><span class="line">System.out.println(str3 == str4);<span class="comment">//false</span></span><br><span class="line">System.out.println(str3 == str5);<span class="comment">//true</span></span><br><span class="line">System.out.println(str4 == str5);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong>：比较 String 字符串的值是否相等，可以使用 <code>equals()</code> 方法。 <code>String</code> 中的 <code>equals</code> 方法是被重写过的。 <code>Object</code> 的 <code>equals</code> 方法是比较的对象的内存地址，而 <code>String</code> 的 <code>equals</code> 方法比较的是字符串的值是否相等。如果你使用 <code>==</code> 比较两个字符串是否相等的话，IDEA 还是提示你使用 <code>equals()</code> 方法替换。</p>
+</blockquote>
+<p><strong>对于编译期可以确定值的字符串，也就是常量字符串 ，jvm 会将其存入字符串常量池。并且，字符串常量拼接得到的字符串常量在编译阶段就已经被存放字符串常量池，这个得益于编译器的优化。</strong></p>
+<p>常量折叠会把常量表达式的值求出来作为常量嵌在最终生成的代码中，这是 Javac 编译器会对源代码做的极少量优化措施之一(代码优化几乎都在即时编译器中进行)。</p>
+<p>对于 <code>String str3 = &quot;str&quot; + &quot;ing&quot;;</code> 编译器会给你优化成 <code>String str3 = &quot;string&quot;;</code> 。</p>
+<p>并不是所有的常量都会进行折叠，只有编译器在程序编译期就可以确定值的常量才可以：</p>
+<ul>
+<li>基本数据类型( <code>byte</code>、<code>boolean</code>、<code>short</code>、<code>char</code>、<code>int</code>、<code>float</code>、<code>long</code>、<code>double</code>)以及字符串常量。</li>
+<li><code>final</code> 修饰的基本数据类型和字符串变量</li>
+<li>字符串通过 “+”拼接得到的字符串、基本数据类型之间算数运算（加减乘除）、基本数据类型的位运算（&lt;&lt;、&gt;&gt;、&gt;&gt;&gt; ）</li>
+</ul>
+<p><strong>引用的值在程序编译期是无法确定的，编译器无法对其进行优化。</strong></p>
+<p>对象引用和“+”的字符串拼接方式，实际上是通过 <code>StringBuilder</code> 调用 <code>append()</code> 方法实现的，拼接完成之后调用 <code>toString()</code> 得到一个 <code>String</code> 对象 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>().append(str1).append(str2).toString();</span><br></pre></td></tr></table></figure>
+
+<p>我们在平时写代码的时候，尽量避免多个字符串对象拼接，因为这样会重新创建对象。如果需要改变字符串的话，可以使用 <code>StringBuilder</code> 或者 <code>StringBuffer</code>。</p>
+<p>不过，字符串使用 <code>final</code> 关键字声明之后，可以让编译器当做常量来处理。</p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;str&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;ing&quot;</span>;</span><br><span class="line"><span class="comment">// 下面两个表达式其实是等价的</span></span><br><span class="line"><span class="type">String</span> <span class="variable">c</span> <span class="operator">=</span> <span class="string">&quot;str&quot;</span> + <span class="string">&quot;ing&quot;</span>;<span class="comment">// 常量池中的对象</span></span><br><span class="line"><span class="type">String</span> <span class="variable">d</span> <span class="operator">=</span> str1 + str2; <span class="comment">// 常量池中的对象</span></span><br><span class="line">System.out.println(c == d);<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>被 <code>final</code> 关键字修饰之后的 <code>String</code> 会被编译器当做常量来处理，编译器在程序编译期就可以确定它的值，其效果就相当于访问常量。</p>
+<p>如果 ，编译器在运行时才能知道其确切值的话，就无法对其优化。</p>
+<p>示例代码（<code>str2</code> 在运行时才能确定其值）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;str&quot;</span>;</span><br><span class="line"><span class="keyword">final</span> <span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> getStr();</span><br><span class="line"><span class="type">String</span> <span class="variable">c</span> <span class="operator">=</span> <span class="string">&quot;str&quot;</span> + <span class="string">&quot;ing&quot;</span>;<span class="comment">// 常量池中的对象</span></span><br><span class="line"><span class="type">String</span> <span class="variable">d</span> <span class="operator">=</span> str1 + str2; <span class="comment">// 在堆上创建的新的对象</span></span><br><span class="line">System.out.println(c == d);<span class="comment">// false</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getStr</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;ing&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
                 
             </div>
