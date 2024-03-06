@@ -753,9 +753,9 @@
 <p><img src="/2024/02/26/java-ba-gu/javase-14.png" alt="Java引用数据值传递示意图"></p>
 <h3 id="深拷贝和浅拷贝区别了解吗？什么是引用拷贝？"><a href="#深拷贝和浅拷贝区别了解吗？什么是引用拷贝？" class="headerlink" title="深拷贝和浅拷贝区别了解吗？什么是引用拷贝？"></a><a href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%8C%BA%E5%88%AB%E4%BA%86%E8%A7%A3%E5%90%97-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%95%E7%94%A8%E6%8B%B7%E8%B4%9D">深拷贝和浅拷贝区别了解吗？什么是引用拷贝？</a></h3><p>关于深拷贝和浅拷贝区别，我这里先给结论：</p>
 <ul>
+<li><strong>引用拷贝</strong>： 简单来说，引用拷贝就是两个不同的引用指向同一个对象。</li>
 <li><strong>浅拷贝</strong>：浅拷贝会在堆上创建一个新的对象（区别于引用拷贝的一点），不过，如果原对象内部的属性是引用类型的话，浅拷贝会直接复制内部对象的引用地址，也就是说拷贝对象和原对象共用同一个内部对象。</li>
 <li><strong>深拷贝</strong>：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象。</li>
-<li><strong>引用拷贝</strong>： 简单来说，引用拷贝就是两个不同的引用指向同一个对象。</li>
 </ul>
 <p><img src="/2024/02/26/java-ba-gu/shallow&deep-copy.png" alt="浅拷贝、深拷贝、引用拷贝示意图"></p>
 <h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><h3 id="1-Object-类的常见方法"><a href="#1-Object-类的常见方法" class="headerlink" title="1.Object 类的常见方法?"></a>1.Object 类的常见方法?</h3><p>Object 类是一个特殊的类，是所有类的父类，也就是说所有类都可以调用它的方法。它主要提供了以下 11 个方法，大概可以分为六类：</p>
