@@ -6,7 +6,7 @@
   <link href="https://nruonan.github.io/atom.xml" rel="self"/>
   
   <link href="https://nruonan.github.io/"/>
-  <updated>2024-04-17T10:39:47.833Z</updated>
+  <updated>2024-04-17T10:52:25.212Z</updated>
   <id>https://nruonan.github.io/</id>
   
   <author>
@@ -21,11 +21,20 @@
     <link href="https://nruonan.github.io/2024/04/17/mysql/"/>
     <id>https://nruonan.github.io/2024/04/17/mysql/</id>
     <published>2024-04-17T10:39:47.000Z</published>
-    <updated>2024-04-17T10:39:47.833Z</updated>
+    <updated>2024-04-17T10:52:25.212Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="mysql进阶"><a href="#mysql进阶" class="headerlink" title="mysql进阶"></a>mysql进阶</h1><h2 id="一-存储引擎"><a href="#一-存储引擎" class="headerlink" title="一.存储引擎"></a>一.存储引擎</h2><p><img src="/2024/04/17/mysql/MySQL%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" alt="MySQL体系结构"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;mysql进阶&quot;&gt;&lt;a href=&quot;#mysql进阶&quot; class=&quot;headerlink&quot; title=&quot;mysql进阶&quot;&gt;&lt;/a&gt;mysql进阶&lt;/h1&gt;&lt;h2 id=&quot;一-存储引擎&quot;&gt;&lt;a href=&quot;#一-存储引擎&quot; class=&quot;headerlink&quot; </summary>
+      
     
     
     
     
+    <category term="mysql" scheme="https://nruonan.github.io/tags/mysql/"/>
     
   </entry>
   
