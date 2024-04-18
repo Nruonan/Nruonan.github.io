@@ -549,7 +549,11 @@
 <li>建立索引需要<strong>占用物理空间</strong></li>
 <li>会降低表的增删改的效率，因为每次对表记录进行增删改，需要进行<strong>动态维护索引</strong>，导致增删改时间变长</li>
 </ul>
-<h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><p>索引的数据结构主要有<strong>B+树</strong>和<strong>哈希表</strong>，对应的索引分别为B+树索引和哈希索引。InnoDB引擎的索引类型有B+树索引和哈希索引，默认的索引类型为B+树索引。</p>
+<h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><p>索引的数据结构主要有<strong>B+树</strong>和<strong>哈希表</strong>，对应的索引分别为B+树索引和哈希索引。InnoDB引擎的索引类型有B+树索引和哈希索引，默认的索引类型为B+树索引。MyISAM支持B+树不支持</p>
+<h4 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h4><p><img src="https://jimhackking.github.io/%E8%BF%90%E7%BB%B4/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91.png" alt="二叉树"></p>
+<p>二叉树的缺点可以用红黑树来解决：<br><img src="https://learning-logs-1253130399.cos.ap-guangzhou.myqcloud.com/editor/%E7%BA%A2%E9%BB%91%E6%A0%91_20220316163142686602.png" alt="红黑树"><br>红黑树也存在大数据量情况下，层级较深，检索速度慢的问题。</p>
+<p>为了解决上述问题，可以使用 B-Tree 结构。<br>B-Tree (多路平衡查找树) 以一棵最大度数（max-degree，指一个节点的子节点个数）为5（5阶）的 b-tree 为例（每个节点最多存储4个key，5个指针）</p>
+<p><img src="https://jimhackking.github.io/%E8%BF%90%E7%BB%B4/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/B-Tree%E7%BB%93%E6%9E%84.png" alt="B-Tree结构"></p>
 
                 
             </div>
