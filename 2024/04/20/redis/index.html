@@ -412,9 +412,9 @@
 </blockquote>
 <p><img src="/2024/04/20/redis/1713600836851.png"></p>
 <h3 id="RDB-在执行快照的时候，数据能修改吗？"><a href="#RDB-在执行快照的时候，数据能修改吗？" class="headerlink" title="RDB 在执行快照的时候，数据能修改吗？"></a>RDB 在执行快照的时候，数据能修改吗？</h3><p>可以的，执行 bgsave 过程中，Redis 依然<strong>可以继续处理操作命令</strong>的，也就是数据是能被修改的，关键的技术就在于<strong>写时复制技术（Copy-On-Write, COW）。</strong></p>
-<p>执行 bgsave 命令的时候，会通过 fork() 创建子进程，此时子进程和父进程是共享同一片内存数据的，因为创建子进程的时候，会复制父进程的页表，但是页表指向的物理内存还是一个，此时如果主线程执行读操作，则主线程和 bgsave 子进程互相不影响。</p>
+<p>执行 bgsave 命令的时候，会通过 fork() 创建子进程，此时子进程和父进程是共享同一片内存数据的，因为创建子进程的时候，会复制父进程的页表，但是页表指向的物理内存还是一个，此时如果主线程执行读操作，则主线程和 bgsave 子进程<strong>互相不影响</strong>。</p>
 <p><img src="https://cdn.xiaolincoding.com//mysql/other/c34a9d1f58d602ff1fe8601f7270baa7-20230309232304226.png" alt="img"></p>
-<p>如果主线程执行写操作，则被修改的数据会复制一份副本，然后 bgsave 子进程会把该副本数据写入 RDB 文件，在这个过程中，主线程仍然可以直接修改原来的数据。</p>
+<p>如果主线程执行<strong>写操作</strong>，则被修改的数据会<strong>复制一份副本</strong>，然后 bgsave 子进程会把该副本数据写入 RDB 文件，在这个过程中，主线程仍然可以直接修改原来的数据。</p>
 <p><img src="https://cdn.xiaolincoding.com//mysql/other/ebd620db8a1af66fbeb8f4d4ef6adc68-20230309232308604.png" alt="img"></p>
 
                 
