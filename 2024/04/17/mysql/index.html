@@ -833,12 +833,12 @@
 </tbody></table>
 <h3 id="事务原理"><a href="#事务原理" class="headerlink" title="事务原理"></a>事务原理</h3><h4 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h4><p><code>redo log</code>（重做日志）是<code>InnoDB</code>存储引擎独有的，它让<code>MySQL</code>拥有了崩溃恢复能力。</p>
 <p>比如 <code>MySQL</code> 实例挂了或宕机了，重启时，<code>InnoDB</code>存储引擎会使用<code>redo log</code>恢复数据，保证数据的持久性与完整性。</p>
-<p><img src="https://oss.javaguide.cn/github/javaguide/02.png" alt="img"></p>
+<p><img src="/2024/04/17/mysql/02.png"></p>
 <p><code>MySQL</code> 中数据是以页为单位，你查询一条记录，会从硬盘把一页的数据加载出来，加载出来的数据叫数据页，会放入到 <code>Buffer Pool</code> 中。</p>
 <p>后续的查询都是先从 <code>Buffer Pool</code> 中找，没有命中再去硬盘加载，减少硬盘 <code>IO</code> 开销，提升性能。</p>
 <p>更新表数据的时候，也是如此，发现 <code>Buffer Pool</code> 里存在要更新的数据，就直接在 <code>Buffer Pool</code> 里更新。</p>
 <p>然后会把“在某个数据页上做了什么修改”记录到重做日志缓存（<code>redo log buffer</code>）里，接着刷盘到 <code>redo log</code> 文件里。</p>
-<p><img src="https://oss.javaguide.cn/github/javaguide/03.png" alt="img"></p>
+<p><img src="/2024/04/17/mysql/03.png"></p>
 <blockquote>
 <p>图片笔误提示：第 4 步 “清空 redo log buffe 刷盘到 redo 日志中”这句话中的 buffe 应该是 buffer。</p>
 </blockquote>
@@ -851,7 +851,7 @@
 <p>不管用什么存储引擎，只要发生了表数据更新，都会产生 <code>binlog</code> 日志。</p>
 <p>那 <code>binlog</code> 到底是用来干嘛的？</p>
 <p>可以说<code>MySQL</code>数据库的<strong>数据备份、主备、主主、主从</strong>都离不开<code>binlog</code>，需要依靠<code>binlog</code>来同步数据，保证数据一致性。</p>
-<p><img src="https://oss.javaguide.cn/github/javaguide/01-20220305234724956.png" alt="img"></p>
+<p><img src="/2024/04/17/mysql/04.png" alt="img"></p>
 <p><code>binlog</code>会记录所有涉及更新数据的逻辑操作，并且是顺序写。</p>
 <hr>
 <p>著作权归JavaGuide(javaguide.cn)所有 基于MIT协议 原文链接：<a target="_blank" rel="noopener" href="https://javaguide.cn/database/mysql/mysql-logs.html">https://javaguide.cn/database/mysql/mysql-logs.html</a></p>
