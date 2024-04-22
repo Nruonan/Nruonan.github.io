@@ -611,8 +611,23 @@
 <td>和 Set 相比，Sorted Set 增加了一个权重参数 <code>score</code>，使得集合中的元素能够按 <code>score</code> 进行有序排列，还可以通过 <code>score</code> 的范围来获取元素的列表。有点像是 Java 中 <code>HashMap</code> 和 <code>TreeSet</code> 的结合体。</td>
 </tr>
 </tbody></table>
-<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><h3 id="阻塞IO"><a href="#阻塞IO" class="headerlink" title="阻塞IO"></a>阻塞IO</h3><p>阻塞IO就是两个阶段都必须阻塞等待</p>
+<h2 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h2><p>用户控件和内何况工具<br>任何Linux发行版，其系统内核都是Linux。 我们的应用都需要通过Linux内核与硬件交互。</p>
+<p>为了避免用户应用导致冲突甚至内核崩溃，用户应用与内核是分离的：<br>进程的寻址空间会划分为两部分：<strong>内核空间、用户空间</strong><br>● 用户空间只能执行受限的命令(Ring3)，而且不能直接调用系统资源，必须通过内核提供的接口来访问<br>● 内核空间可以执行特权命令(Ring0)，调用一切系统资源</p>
+<p>Linux系统为了提高<strong>IO效率</strong>，会在用户空间和内核空间都加入<strong>缓冲区</strong>：<br>写数据时，要把用户缓冲数据<strong>拷贝</strong>到<strong>内核缓冲区</strong>，然后写入设备<br>读数据时，要从设备<strong>读取</strong>数据到<strong>内核缓冲</strong>区，然后拷贝到<strong>用户缓冲区</strong></p>
+<h3 id="阻塞IO"><a href="#阻塞IO" class="headerlink" title="阻塞IO"></a>阻塞IO</h3><p>阻塞IO就是两个阶段都必须阻塞等待</p>
 <p><img src="/2024/04/20/redis/1713689554700.png"></p>
+<p>可以看到，阻塞IO模型中，用户进程在两个阶段都是<strong>阻塞状态</strong>。</p>
+<h3 id="非阻塞IO"><a href="#非阻塞IO" class="headerlink" title="非阻塞IO"></a>非阻塞IO</h3><p>非阻塞IO的<strong>recvfrom操作</strong>会立即返回结果而不是阻塞用户进程</p>
+<p><img src="/2024/04/20/redis/1713689915308.png"></p>
+<p>性能上可能不如阻塞IO</p>
+<h3 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h3><p>无论是阻塞IO还是非阻塞IO,用户应用在一阶段都需要调用recvfrom来获取数据，差别在于无数据时的处理方案：<br>● 如果调用recvfrom时，恰好没有数据，阻塞IO会使进程阻塞，非阻塞IO使CPU空转，都不能充分发挥CPU的作用。<br>● 如果调用recvfrom时，恰好<strong>有</strong>数据，则用户进程可以直接进入第二阶段，读取并处理数据<br>比如服务端处理客户端Socketi请求时，在单线程情况下，只能依次处理每一个socket,如果正在处理的socket恰好未就绪（数据不可读或不可写)，线程就会被阻塞，所有其它客户端socketi都必须等待，性能自然会很差。</p>
+<p>这就像服务员给顾客点餐，分两步：<br>1.顾客思考要吃什么（等待数据就绪）<br>2.顾客想好了，开始点餐（读取数据）</p>
+<p>要提高效率有冲办法？<br>√方案一：增加更多服务员（多线程)<br>√方案二：不排队，谁想好了吃什么（数据就绪了），服务员就给谁点餐（用户应用就去读取数据）</p>
+<p><strong>用户进程如何知道内核中数据是否就绪呢？</strong></p>
+<p><strong>文件描述符</strong>(File Descriptor)：简称FD,是一个从0开始递增的<strong>无符号整数</strong>，用来关联Linux中的一个文件。在Linux中，一切皆文件，例如常规文件、视频、硬件设备等，当然也包括网络套接字(Socket)。</p>
+<p><strong>IO多路复用</strong>：是利用单个线程来同时监听多个FD,并在某个FD可读、可写时得到通知，从而避免无效的等待，充分利用CPU资源。</p>
+<p><img src="/2024/04/20/redis/1713693251507.png"></p>
+<p><img src="/2024/04/20/redis/1713693697297.png" alt="1713693697297"></p>
 
                 
             </div>
@@ -753,18 +768,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/04/20/redis/">
+                <a href="/2024/04/21/jvm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Redis">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="jvm">
                         
-                        <span class="card-title">Redis</span>
+                        <span class="card-title">jvm</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -774,9 +788,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-04-21
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -785,7 +799,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
