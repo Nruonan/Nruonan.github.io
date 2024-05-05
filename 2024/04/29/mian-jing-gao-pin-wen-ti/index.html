@@ -792,7 +792,6 @@
 <ul>
 <li>IOC(Inversion of Control)：<strong>控制反转</strong>，控制对象生命周期的不再是引用它的对象，而是容器，由容器来负责控制对象的生命周期和对象间的关系</li>
 <li>比如当我们需要一个接口的实现时，由它根据配置文件来决定到底给我们哪一个实现类，这样，我们就可以不用再关心我们要去使用哪一个实现类了</li>
-<li>IOC的简单原理：<br><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240309154436225.png" alt="image-20240309154436225"></li>
 </ul>
 <h3 id="DI"><a href="#DI" class="headerlink" title="DI"></a>DI</h3><blockquote>
 <p><strong>依赖注入</strong>，指的是容器在实例化对象的时候把它依赖的类注入给它</p>
@@ -806,7 +805,14 @@
 </ul>
 </li>
 </ul>
-<h4 id="Autowired和-Resourse有什么区别？"><a href="#Autowired和-Resourse有什么区别？" class="headerlink" title="@Autowired和@Resourse有什么区别？"></a>@Autowired和@Resourse有什么区别？</h4><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240423202705764.png" alt="image-20240423202705764"></p>
+<h4 id="Component和-Bean"><a href="#Component和-Bean" class="headerlink" title="@Component和 @Bean"></a>@Component和 @Bean</h4><ul>
+<li>@Component 作用于类上，@Bean 作用在方法。</li>
+<li>@Component 通常通过启动配置@ComponentScan扫描到的类，自动装配到了 Bean 容器中。而@Bean 是当需要的用到的时候，Spring 才给调用方。</li>
+</ul>
+<h4 id="Autowired和-Resourse有什么区别？"><a href="#Autowired和-Resourse有什么区别？" class="headerlink" title="@Autowired和@Resourse有什么区别？"></a>@Autowired和@Resourse有什么区别？</h4><ul>
+<li>@Autowird 是Spring提供的，默认是 byType 的，优先匹配类型注入 Bean。</li>
+<li>@Resource 是JDK提供的，默认是 ByName 的，如果找不到相对应的 Name 时，才会转成 byType。</li>
+</ul>
 <h4 id="循环依赖？"><a href="#循环依赖？" class="headerlink" title="循环依赖？"></a>循环依赖？</h4><blockquote>
 <p>简单来说就是自己依赖自己，或者和别的Bean相互依赖（只存在于<strong>单例模式</strong>，原型模式会抛出异常）</p>
 <p>注意：Spring可以自动解决：AB均采用属性注入、先构造器注入后属性注入，无法解决均构造器注入</p>
@@ -840,7 +846,7 @@
 <li>例如，每个模块都要有日志记录、数据校验等功能，就可以分离出来，在各个模块合适的地方植入即可</li>
 <li>AOP的核心是<strong>动态代理</strong><ul>
 <li>Spring在实现AOP时，会根据目标类是否实现接口自动选择使用JDK动态代理或CGLIB代理</li>
-<li>默认情况下，如果目标类实现了接口，Spring会选择JDK代理；否则，会选择CGLIB代理</li>
+<li>默认情况下，如果目标类实现了接口，Spring会选择JDK代理；否则，会选择CGLIB代理（生成一个被代理类的子类作为对象）</li>
 <li>用户也可以通过配置强制指定使用某种代理方式</li>
 </ul>
 </li>
@@ -865,22 +871,68 @@
 </blockquote>
 <ul>
 <li><strong>原理</strong>：<ul>
-<li>基于<strong>ASM字节码操作框架</strong>，能够在运行时动态生成目标类的子类作为代理对象</li>
+<li>基于<strong>ASM字节码操作框架</strong>，能够在运行时动态<strong>生成目标类的子类作为代理对象</strong></li>
 <li>这个子类重写了目标类的部分或全部方法，从而在方法调用时插入额外的操作</li>
 </ul>
 </li>
 <li><strong>优点</strong>：无接口限制（适用范围更广）、性能比JDK动态代理快</li>
 <li><strong>缺点</strong>：第三方依赖、继承局限（无法代理final类、无法覆盖final方法）</li>
 </ul>
-<h3 id="Spring事务传播行为？"><a href="#Spring事务传播行为？" class="headerlink" title="Spring事务传播行为？"></a>Spring事务传播行为？</h3><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240328130923241.png" alt="image-20240328130923241"></p>
+<h3 id="Spring事务传播行为？"><a href="#Spring事务传播行为？" class="headerlink" title="Spring事务传播行为？"></a>Spring事务传播行为？</h3><ul>
+<li><strong>REQUIRED</strong>：如果当前存在事务，则加入这个事务，如果没有，则创建一个新的事务。</li>
+<li><strong>REQUIRES_NEW：</strong>如果当前存在事务，直接挂起，开一个新的事务进行执行，两者互不干扰。</li>
+<li><strong>MANDATORY</strong>：如果当前存在事务，则加入这个事务，反之直接抛出异常。</li>
+<li>SUPPORTS：存在则加入，不存在，以非事务方式运行。</li>
+<li>NOT_SUPPORTS：以非事务方式运行，存在事务则挂起。</li>
+<li>NEVER：以非事务方式运行，存在事务则抛出异常。</li>
+</ul>
 <h4 id="导致Spring声明式事务失效的原因？"><a href="#导致Spring声明式事务失效的原因？" class="headerlink" title="导致Spring声明式事务失效的原因？"></a>导致Spring声明式事务失效的原因？</h4><ul>
 <li>@Transactional 应用在非 public 修饰的方法上</li>
 <li>@Transactional 注解属性 propagation（传播行为）设置错误</li>
 <li>@Transactional 注解属性 rollbackFor （事务回滚的异常类型）设置错误</li>
 <li>同一个类中方法调用，导致@Transactional失效</li>
 </ul>
-<h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240423224718320.png" alt="image-20240423224718320" style="zoom:150%;">
-
+<h4 id="Bean生命周期"><a href="#Bean生命周期" class="headerlink" title="Bean生命周期"></a>Bean生命周期</h4><ul>
+<li><strong>创建 Bean 的实例</strong>：找到配置文件中的Bean 定义，创建实例，分配内存空间</li>
+<li><strong>Bean 属性赋值&#x2F;填充：</strong> 依赖注入，注解注入的对象、@value注入的值等属性填充。</li>
+<li><strong>Bean 初始化</strong><ul>
+<li>是否实现了 *.Aware() 接口，先执行</li>
+<li>执行前置方法 postProcess<strong>Before</strong>Initialization()</li>
+<li>执行 afterPropertiesSet() 方法，进行初始化</li>
+<li>执行 init-method 属性中的指定方法</li>
+<li>执行后置方法 postProcess<strong>After</strong>Initialization()</li>
+</ul>
+</li>
+<li>销毁Bean：将销毁方法记录，将来要销毁时再执行<ul>
+<li>实现了DisposableBean接口，执行destroy()方法</li>
+<li>配置文件包含 destroy-method 属性，执行指定的销毁方法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h4 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h4><ul>
+<li>DispatcherServlet：核心中央处理器，负责接受请求、分发，并且响应客户端。</li>
+<li>HandlerMapping：处理器映射器，根据 URL 匹配对应的 Handler，并且将请求涉及的拦截器与 Handler 封装。</li>
+<li>HandlerAdapter：处理器适配器，根据HandlerMapping 找到的 Handler，适配执行。</li>
+<li>Handler：请求处理器，实际请求的处理器。</li>
+<li>ViewResolver：视图解析器，根据 Handler 返回的逻辑视图，转换成真正视图。</li>
+</ul>
+<h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><ol>
+<li>http 请求到DispatcherServlet</li>
+<li>DispatcherServlet 发送 URL 到HandlerMapping中</li>
+<li>HandlerMapping 找到相对应的 Handler，返回给 DispatcherServlet。</li>
+<li>DispatcherServlet 告诉 HandlerAdapter要执行的 Handler</li>
+<li>HandlerAdapter 调用 Handler 执行，并且返回ModelAndView 给 DispatcherServlet</li>
+<li>DispatcherServlet 将 ModelAndView 给 ViewResolver 处理，返回真正的视图</li>
+<li>DispatcherServlet 将真正的视图返回给浏览器</li>
+</ol>
+<h4 id="Spring用到哪些设计模式？"><a href="#Spring用到哪些设计模式？" class="headerlink" title="Spring用到哪些设计模式？"></a>Spring用到哪些设计模式？</h4><ul>
+<li>工厂模式：通过 BeanFactory 创建 Bean 对象。</li>
+<li>单例模式：Bean 默认的作用域就是单例模式创建的。</li>
+<li>代理模式：AOP 就是通过代理模式实现的。</li>
+<li>模板方法：JdbcTemplate 以Template 结尾的类都是模板方法。</li>
+<li>适配器模式：在 Spring MVC 中的核心组件里就是适配器模式，可以根据不同的Controller 获取到对应类型。</li>
+<li>装试者模式：可以动态地添加额外的属性或行为。</li>
+</ul>
 <h3 id="Spring-Boot？"><a href="#Spring-Boot？" class="headerlink" title="Spring Boot？"></a>Spring Boot？</h3><h4 id="介绍一下SpringBoot，它有哪些优点？"><a href="#介绍一下SpringBoot，它有哪些优点？" class="headerlink" title="介绍一下SpringBoot，它有哪些优点？"></a>介绍一下SpringBoot，它有哪些优点？</h4><ul>
 <li><p>Spring Boot 以<strong>约定大于配置</strong>核心思想开展工作，相比Spring具有很多优势</p>
 </li>
@@ -893,8 +945,10 @@
 <li><p>可以快速整合常用依赖，创建独立运行的spring项目</p>
 </li>
 </ul>
-<h4 id="SpringBoot自动配置原理了解吗？"><a href="#SpringBoot自动配置原理了解吗？" class="headerlink" title="SpringBoot自动配置原理了解吗？"></a>SpringBoot自动配置原理了解吗？</h4><p>   SpringBoot开启自动配置的注解是@EnableAutoConfiguration ，启动类上的注解**@SpringBootApplication**是一个复合注解，包含@EnableAutoConfiguration</p>
-<p>   <img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240309175901209.png" alt="image-20240309175901209"></p>
+<h4 id="SpringBoot自动配置原理了解吗？"><a href="#SpringBoot自动配置原理了解吗？" class="headerlink" title="SpringBoot自动配置原理了解吗？"></a>SpringBoot自动配置原理了解吗？</h4><ul>
+<li>在 SpringBoot 项目启动类中，@EnableAutoConfiguration进行启动</li>
+<li>通过 AutoConfigurationImportSelector 加载自动装配类，获取<strong>所有符合条件的类的全限定类名，都加载到 IoC 容器中</strong>。</li>
+</ul>
 <h4 id="starter是什么？如何编写一个自己的starter？"><a href="#starter是什么？如何编写一个自己的starter？" class="headerlink" title="starter是什么？如何编写一个自己的starter？"></a>starter是什么？如何编写一个自己的starter？</h4><blockquote>
 <p>Spring Boot Starter 是 Spring Boot 框架的一个重要特性，它旨在简化应用程序的初始设置和依赖管理。一个 Starter 是一个特殊的模块或库，它包含了实现特定功能所需的所有依赖项、自动配置类和可能的默认配置</p>
 </blockquote>
@@ -911,7 +965,7 @@
 <li><strong>自动配置</strong>：每个 Starter 通常会附带一个或多个 <code>@Configuration</code> 类，这些类使用 Spring Boot 的条件化配置机制（<code>@ConditionalOnClass</code>, <code>@ConditionalOnMissingBean</code> 等注解）来自动配置 Bean 和属性，当满足特定条件（如类路径上有某些库存在）时，自动配置就会生效</li>
 <li><strong>默认配置</strong>：Starter 可能会提供默认的配置属性，这些属性可以在 <code>application.properties</code> 或 <code>application.yml</code> 文件中轻松覆盖。Spring Boot 的 <code>spring-boot-configuration-processor</code> 插件还会为这些属性生成元数据，使得 IDE 能够提供智能提示和文档链接</li>
 </ol>
-<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h3 id="介绍一下RabbitMQ"><a href="#介绍一下RabbitMQ" class="headerlink" title="介绍一下RabbitMQ?"></a>介绍一下RabbitMQ?</h3><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240306202737167.png" alt="image-20240306202737167"></p>
+<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h3 id="介绍一下RabbitMQ"><a href="#介绍一下RabbitMQ" class="headerlink" title="介绍一下RabbitMQ?"></a>介绍一下RabbitMQ?</h3><p>RabbitMQ 是一个在 AMQP（Advanced Message Queuing Protocol ）基础上实现的，可复用的企业消息系统。它实现了一个 Broker 构架，这意味着消息在发送给客户端时先在中心队列排队，对路由(Routing)、负载均衡(Load balance)或者数据持久化都有很好的支持。</p>
 <h4 id="exchange都有哪些类型？"><a href="#exchange都有哪些类型？" class="headerlink" title="exchange都有哪些类型？"></a>exchange都有哪些类型？</h4><ul>
 <li><strong>direct</strong>：（默认的）<strong>全文匹配</strong>，按照routingkey发到指定队列</li>
 <li><strong>topic</strong>：<strong>模糊匹配</strong>，根据通配符可将一个消息发到多个队列</li>
@@ -1144,7 +1198,12 @@
 <li><p>不可重复读：前后<strong>读取的数据不一致</strong></p>
 </li>
 </ul>
-<h3 id="事务隔离级别？"><a href="#事务隔离级别？" class="headerlink" title="事务隔离级别？"></a>事务隔离级别？</h3><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240413145952959.png" alt="image-20240413145952959"></p>
+<h3 id="事务隔离级别？"><a href="#事务隔离级别？" class="headerlink" title="事务隔离级别？"></a>事务隔离级别？</h3><ul>
+<li><strong>UNCOMMITTED</strong>：<strong>读未提交</strong>，可以读取到未提交的数据变更，会导致脏读、幻读、不可重复读。</li>
+<li><strong>COMMITTED</strong>：<strong>读已提交</strong>，允许读取到事务已经提交的数据，可以阻止脏读，但是幻读、不可重复读还是会发生。</li>
+<li><strong>REPEATABLE-READ：可重复读</strong>，对同一个字段多次读取都是一样的结果，无法避免幻读。</li>
+<li><strong>REPEATABLE-READ：可串行化</strong>，最高隔离级别，完全服从 ACID 原则。</li>
+</ul>
 <h3 id="🌟MVCC"><a href="#🌟MVCC" class="headerlink" title="🌟MVCC"></a>🌟MVCC</h3><blockquote>
 <p>多版本并发控制，用于解决并发访问下的读一致性问题，它通过维护数据的历史版本来实现</p>
 <p>几个关键点：<strong>隐藏字段</strong>、<strong>undo日志</strong>、<strong>版本链</strong>、<strong>快照读和当前读</strong>、<strong>Read View</strong></p>
@@ -1153,8 +1212,8 @@
 <li><strong>快照读</strong>，读取的是记录的可见版本 (有可能是历史版本)，不用加锁</li>
 <li><strong>当前读</strong>，读取的是记录的最新版本，并且，当前读返回的记录，都会加上锁，保证其他事务不会再并发修改这条记录</li>
 </ul>
-<p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240413172456228.png" alt="image-20240413172456228"></p>
-<h4 id="Read-View"><a href="#Read-View" class="headerlink" title="Read View"></a>Read View</h4><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240413150050900.png" alt="image-20240413150050900"></p>
+<p><a href="!%5B%E9%9A%90%E8%97%8F%E5%AD%97%E6%AE%B5%E4%BD%9C%E7%94%A8%5D(https://nruonan.github.io/2024/04/17/mysql/%E9%9A%90%E8%97%8F%E5%AD%97%E6%AE%B5.png">image-20240413172456228</a></p>
+<h4 id="Read-View"><a href="#Read-View" class="headerlink" title="Read View"></a>Read View</h4><p><img src="https://nruonan.github.io/2024/04/17/mysql/%E5%AD%97%E6%AE%B5.png" alt="img"></p>
 <p>以上四个重要字段：（都是创建该Read View时的数据）</p>
 <ol>
 <li><strong>活跃且未提交</strong>的事务id列表</li>
@@ -1341,7 +1400,13 @@
 </blockquote>
 <ul>
 <li><p>AOF的工作流程操作</p>
-<p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240410232947948.png" alt="image-20240410232947948"></p>
+<ol>
+<li><strong>命令追加（append）</strong>：所有的写命令会追加到 AOF 缓冲区中。</li>
+<li><strong>文件写入（write）</strong>：将 AOF 缓冲区的数据写入到 AOF 文件中。这一步需要调用<code>write</code>函数（系统调用），<code>write</code>将数据写入到了系统内核缓冲区之后直接返回了（延迟写）。注意！！！此时并没有同步到磁盘。</li>
+<li><strong>文件同步（fsync）</strong>：AOF 缓冲区根据对应的持久化方式（ <code>fsync</code> 策略）向硬盘做同步操作。这一步需要调用 <code>fsync</code> 函数（系统调用）， <code>fsync</code> 针对单个文件操作，对其进行强制硬盘同步，<code>fsync</code> 将阻塞直到写入磁盘完成后返回，保证了数据持久化。</li>
+<li><strong>文件重写（rewrite）</strong>：随着 AOF 文件越来越大，需要定期对 AOF 文件进行重写，达到压缩的目的。</li>
+<li><strong>重启加载（load）</strong>：当 Redis 重启时，可以加载 AOF 文件进行数据恢复。</li>
+</ol>
 </li>
 </ul>
 <h3 id="RDB和AOF如何选择？（各自优缺点）"><a href="#RDB和AOF如何选择？（各自优缺点）" class="headerlink" title="RDB和AOF如何选择？（各自优缺点）"></a>RDB和AOF如何选择？（各自优缺点）</h3><h4 id="RDB-1"><a href="#RDB-1" class="headerlink" title="RDB"></a>RDB</h4><ul>
@@ -1524,7 +1589,7 @@
 <li><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240308232332827.png" alt="image-20240308232332827"></li>
 <li><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240308232346270.png" alt="image-20240308232346270"></li>
 </ul>
-<h3 id="垃圾回收分为哪些？"><a href="#垃圾回收分为哪些？" class="headerlink" title="垃圾回收分为哪些？"></a>垃圾回收分为哪些？</h3><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240308232725094.png" alt="image-20240308232725094"></p>
+<h3 id="垃圾回收分为哪些？"><a href="#垃圾回收分为哪些？" class="headerlink" title="垃圾回收分为哪些？"></a>垃圾回收分为哪些？</h3><p> <img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240308232725094.png" alt="image-20240308232725094"></p>
 <h3 id="对象什么时候回进入老年代？"><a href="#对象什么时候回进入老年代？" class="headerlink" title="对象什么时候回进入老年代？"></a>对象什么时候回进入老年代？</h3><ul>
 <li><strong>长期存活</strong>（默认GC年龄大于15）</li>
 <li><strong>大对象</strong>（直接进入）</li>
