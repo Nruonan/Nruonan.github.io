@@ -679,7 +679,50 @@
 <li><p>修饰类：不可以被继承</p>
 </li>
 </ul>
-<h3 id="访问修饰符？"><a href="#访问修饰符？" class="headerlink" title="访问修饰符？"></a>访问修饰符？</h3><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240408233207532.png" alt="image-20240408233207532"></p>
+<h3 id="访问修饰符？"><a href="#访问修饰符？" class="headerlink" title="访问修饰符？"></a>访问修饰符？</h3><table>
+<thead>
+<tr>
+<th align="left">修饰符</th>
+<th align="left">当前类</th>
+<th align="left">同一包内</th>
+<th align="left">子孙类(同一包)</th>
+<th align="left">子孙类(不同包)</th>
+<th align="left">其他包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>public</code></td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+</tr>
+<tr>
+<td align="left"><code>protected</code></td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y&#x2F;N（<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-modifier-types.html#protected-desc">说明</a>）</td>
+<td align="left">N</td>
+</tr>
+<tr>
+<td align="left"><code>default</code></td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr>
+<td align="left"><code>private</code></td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+</tbody></table>
 <h4 id="子类会不会继承父类的private属性？"><a href="#子类会不会继承父类的private属性？" class="headerlink" title="子类会不会继承父类的private属性？"></a>子类会不会继承父类的private属性？</h4><p>父类的private属性子类无法直接访问，但是依然可以通过间接的形式去访问父类定义的属性，如果这个属性没有被继承，那么子类肯定是访问不到这个属性的，所以private是会被继承的</p>
 <h3 id="抽象类和接口？"><a href="#抽象类和接口？" class="headerlink" title="抽象类和接口？"></a>抽象类和接口？</h3><blockquote>
 <p>接口只是具有哪些能力的一个代表而已。而抽象类不同，抽象类再怎么抽象，它本质上也依然是一个类，类是可以具有属性的（但是二者都不可以被new实例化）</p>
@@ -699,6 +742,12 @@
 </ul>
 </li>
 </ol>
+<p>区别：</p>
+<ul>
+<li>一个类只能继承一个父类，但是可以实现多个接口。</li>
+<li>接口是对类的行为约束，抽象类主要是代码复用，可以继承属性，行为，方法。</li>
+<li>接口中的成员变量只能是 public static final 类型的，不能被修改且必须有初始值，而抽象类的成员变量默认 default，可在子类中被重新定义，也可被重新赋值</li>
+</ul>
 <h3 id="🌟🌟🌟-和-equals方法-的区别？"><a href="#🌟🌟🌟-和-equals方法-的区别？" class="headerlink" title="🌟🌟🌟&#x3D;&#x3D; 和 equals方法 的区别？"></a>🌟🌟🌟&#x3D;&#x3D; 和 equals方法 的区别？</h3><p>在Java中，<code>==</code>操作符和<code>equals()</code>方法都是用于比较两个对象，但它们在使用上有着本质区别：</p>
 <ol>
 <li><p>使用<code>==</code>运算符</p>
@@ -715,7 +764,7 @@
 </li>
 </ol>
 <h3 id="🌟🌟🌟equals-和-hashCode？"><a href="#🌟🌟🌟equals-和-hashCode？" class="headerlink" title="🌟🌟🌟equals 和 hashCode？"></a>🌟🌟🌟equals 和 hashCode？</h3><h4 id="什么是hashCode？"><a href="#什么是hashCode？" class="headerlink" title="什么是hashCode？"></a>什么是hashCode？</h4><p>在Java中，<code>hashCode()</code> 方法是用来返回对象的哈希码的。哈希码是一个整数，用来表示对象的唯一标识。Java中默认的 <code>hashCode()</code> 方法是从对象的内存地址计算出来的</p>
-<h4 id="为什么要有hashCode？"><a href="#为什么要有hashCode？" class="headerlink" title="为什么要有hashCode？"></a>为什么要有hashCode？</h4><p>哈希码主要用于优化具有哈希结构的集合（如<code>HashMap</code>、<code>HashSet</code>等）的性能。当向这些集合中添加或检索元素时，Java会使用对象的哈希码来快速定位该对象可能存储的桶位置</p>
+<h4 id="为什么要有hashCode？"><a href="#为什么要有hashCode？" class="headerlink" title="为什么要有hashCode？"></a>为什么要有hashCode？</h4><p>哈希码主要用于优化具有哈希结构的集合（如<code>HashMap</code>、<code>HashSet</code>等）的性能。当向这些集合中添加或检索元素时，Java会使用对象的哈希码来快速定位该对象可能存储的桶位置，<strong>提高对象比较的效率</strong></p>
 <h4 id="为什么重写-equals-时必须重写-hashCode-⽅法？"><a href="#为什么重写-equals-时必须重写-hashCode-⽅法？" class="headerlink" title="为什么重写 equals 时必须重写 hashCode ⽅法？"></a>为什么重写 equals 时必须重写 hashCode ⽅法？</h4><blockquote>
 <p>为了保证<code>equals()</code>方法和<code>hashCode()</code>方法之间的一致性，尤其是在使用<code>HashMap</code>、<code>HashSet</code>等集合的时候</p>
 </blockquote>
@@ -732,11 +781,14 @@
 <li><strong>浅拷贝(Shallow Copy)</strong> 浅拷贝是指创建一个新对象，但只复制原始对象的基本数据类型的数据值，而引用类型数据仍然指向原始对象的内存地址。（根据B复制了A但是B指向A，B修改会影响A）</li>
 <li><strong>深拷贝(Deep Copy)</strong> 深拷贝同样是指创建一个新对象，但是此时复制的不仅仅是基本数据类型数据，同时引用类型所指向的对象也会被复制，得到一个新的对象并引用（根据B完全创造了A，AB之间互不关联了）</li>
 </ul>
-<h2 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h2><h3 id="String类可以被继承吗？"><a href="#String类可以被继承吗？" class="headerlink" title="String类可以被继承吗？"></a>String类可以被继承吗？</h3><p>不行。String类在Java中被声明为 <strong>final类</strong> ，这意味着它不能被继承</p>
+<h2 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h2><h3 id="String类可以被继承吗？"><a href="#String类可以被继承吗？" class="headerlink" title="String类可以被继承吗？"></a>String类可以被继承吗？</h3><p>不可以</p>
+<ol>
+<li>保存字符串的数组是被 final 修饰且私有的，且 String没有提供相关修改这个数组的方法。</li>
+<li>String类 被 final 修饰导致不能被继承，进而达成 String 不可变。</li>
+</ol>
 <h3 id="String-StringBuilder-StringBuffer？"><a href="#String-StringBuilder-StringBuffer？" class="headerlink" title="String   StringBuilder   StringBuffer？"></a>String   StringBuilder   StringBuffer？</h3><blockquote>
 <p>都是用于处理字符串的类，都实现了CharSequence接口</p>
 </blockquote>
-<p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240409105600531.png" alt="image-20240409105600531"></p>
 <ul>
 <li>String：不可变，故而线程安全，但频繁的字符串拼接操作会产生大量临时对象，影响性能</li>
 <li>StringBuffer：方法都使用<code>synchronized</code>关键字进行同步保证线程安全，但性能相对较低</li>
@@ -783,14 +835,122 @@
 <p>基于JVM的<strong>类加载机制和类对象模型</strong></p>
 </blockquote>
 <p>在Java 中，每个类都有一个对应的Class对象，该对象包含了类的名称、字段、方法等信息。通过反射，我们可以获取到这些信息，并在运行时动态地操作类和对象</p>
+<h1 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h1><h3 id="🌟ArrayList和LinkedList的区别？"><a href="#🌟ArrayList和LinkedList的区别？" class="headerlink" title="🌟ArrayList和LinkedList的区别？"></a>🌟ArrayList和LinkedList的区别？</h3><ul>
+<li>数据结构不同（前者<strong>动态数组</strong>，后者<strong>双向链表</strong>）</li>
+<li>前者利于查找、后者利于增删</li>
+<li>是否支持随机访问</li>
+<li>内存占用（是否连续）</li>
+</ul>
+<h4 id="ArrayList扩容机制"><a href="#ArrayList扩容机制" class="headerlink" title="ArrayList扩容机制"></a>ArrayList扩容机制</h4><ul>
+<li>ArrayList 默认大小是 10</li>
+<li>ArrayList 默认是以空数组进行创建的，当真正对数组添加元素的时候，才真正分配容量。</li>
+<li>当加入 n + 1 个元素时，进行扩容，定义一个newCapacity，这个新的容量是<strong>旧容量的 1.5 倍</strong>。进而调用 Array.copyOf()</li>
+</ul>
+<h3 id="HashSet，LinkedHashSet，TreeSet的区别"><a href="#HashSet，LinkedHashSet，TreeSet的区别" class="headerlink" title="HashSet，LinkedHashSet，TreeSet的区别"></a>HashSet，LinkedHashSet，TreeSet的区别</h3><ul>
+<li>都能保证元素唯一，并且都不是线程安全的。</li>
+<li>HashSet 的底层数据结构是哈希表（基于 HashMap 实现）。</li>
+<li>LinkedHashSet 的底层数据结构是链表和哈希表，元素的插入和取出顺序满足 FIFO。</li>
+<li>TreeSet 底层数据结构是红黑树，元素是有序的，排序的方式有自然排序和定制排序。</li>
+<li>HashSet 用于不需要保证元素插入和取出顺序的场景，LinkedHashSet 用于保证元素的插入和取出顺序满足 FIFO 的场景，TreeSet 用于支持对元素自定义排序规则的场景。</li>
+</ul>
+<h3 id="🌟快速失败-和-安全失败？"><a href="#🌟快速失败-和-安全失败？" class="headerlink" title="🌟快速失败 和 安全失败？"></a>🌟快速失败 和 安全失败？</h3><blockquote>
+<p>两种“失败”源于<strong>在遍历集合的同时有对集合做修改</strong>，尤其是在面对<strong>多线程环境下</strong>的<strong>并发修改</strong>时所采取的不同策略</p>
+</blockquote>
+<h4 id="快速失败"><a href="#快速失败" class="headerlink" title="快速失败"></a>快速失败</h4><blockquote>
+<p>位于<code>java.util</code>包下的<code>ArratList / LinkedList / HashMap</code>等都采用快速失败</p>
+</blockquote>
+<ul>
+<li><strong>现象</strong>：如果在迭代过程中有线程（包括本身）对集合进行了修改（添加&#x2F;删除&#x2F;更新），那么会立刻检测到这个修改并<strong>迅速抛出异常</strong></li>
+<li><strong>原理</strong>：通过<strong>维护一个内部计数器</strong>（如<code>modCount</code>）来跟踪集合结构的变化。每次对集合进行结构修改时，这个计数器会递增，迭代器在每次调用<code>next()</code>或<code>remove()</code>方法前检查当前计数器值与遍历开始时记录的预期值是否一致。如果不一致，说明集合已被并发修改，于是立即抛出异常</li>
+<li><strong>如何解决</strong>？<ul>
+<li><strong>删除元素</strong>：使用迭代器的<code>remove()</code>方法 &#x2F; 使用集合自带的<code>removeIf()</code>方法</li>
+<li><strong>多线程</strong>：加锁修改，<strong>使用并发集合</strong>（如<code>CopyOnWriteArrayList / ConcurrentHashMap</code>等）</li>
+</ul>
+</li>
+</ul>
+<h4 id="安全失败"><a href="#安全失败" class="headerlink" title="安全失败"></a>安全失败</h4><blockquote>
+<p>位于<code>java.util.concurrent</code>包下的<code>CopyOnWriteArrayList / ConcurrentHashMap</code>等都采用安全失败</p>
+</blockquote>
+<ul>
+<li><strong>现象</strong>：在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历</li>
+<li><strong>原理</strong>：由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中所作的修改并不能被迭代器检测到，所以不会触发<strong>快速失败</strong>而抛出异常</li>
+<li><strong>缺点</strong>：迭代器并不能访问到修改后的内容（开始遍历的那一刻就一直拿的是原始集合）</li>
+</ul>
+<h3 id="讲讲HashMap？"><a href="#讲讲HashMap？" class="headerlink" title="讲讲HashMap？"></a>讲讲HashMap？</h3><h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p>数组+链表+红黑树</p>
+<p>在jdk1.8 之后在解决 Hash 冲突的时候有了优化，当<strong>链表长度大于 8</strong> 且<strong>数组长度大于 64</strong> 时，将链表转换成红黑树。</p>
+<h4 id="红黑树特点"><a href="#红黑树特点" class="headerlink" title="红黑树特点"></a>红黑树特点</h4><ul>
+<li><strong>节点颜色</strong>：每个节点或者是黑色，或者是红色</li>
+<li><strong>根节点和叶子节点</strong>：根节点和叶子节点（<code>NIL</code>）是黑色的</li>
+<li><strong>颜色规则</strong>：如果一个节点是红色的，则它的父节点&#x2F;子节点必须是黑色的</li>
+<li><strong>路径规则</strong>：从任意节点到其每个叶子节点的路径都包含相同数量的黑色节点</li>
+</ul>
+<h4 id="HashMap哈希函数怎么设计的？"><a href="#HashMap哈希函数怎么设计的？" class="headerlink" title="HashMap哈希函数怎么设计的？"></a>HashMap哈希函数怎么设计的？</h4><blockquote>
+<p>这样设计达到高位低位混合的效果，增加哈希值随机性，降低哈希冲突概率</p>
+</blockquote>
+<ul>
+<li>先通过hashCode获得key的哈希值（32位）</li>
+<li>再将哈希值右移16位，与哈希值本身<strong>异或</strong></li>
+</ul>
+<h4 id="HashMap和Hashtable的区别？"><a href="#HashMap和Hashtable的区别？" class="headerlink" title="HashMap和Hashtable的区别？"></a>HashMap和Hashtable的区别？</h4><p>都实现了Map接口，但是有以下不同：</p>
+<ul>
+<li>HashMap可以接受<code>null</code>的key和value，Hashtable不行</li>
+<li>HashMap是非线程安全的，HashTable是线程安全的</li>
+<li>Hashtable很多方法是同步方法，在单线程环境下它比HashMap要慢</li>
+<li>哈希值的使用不同，HashTable直接使用对象的hashCode，而HashMap重新计算hash值</li>
+</ul>
+<h4 id="LinkedHashMap和TreeMap是如何保证有序的？"><a href="#LinkedHashMap和TreeMap是如何保证有序的？" class="headerlink" title="LinkedHashMap和TreeMap是如何保证有序的？"></a>LinkedHashMap和TreeMap是如何保证有序的？</h4><p>前者双向链表，后者红黑树</p>
+<h4 id="HashMap-多线程死循环了解吗"><a href="#HashMap-多线程死循环了解吗" class="headerlink" title="HashMap 多线程死循环了解吗"></a>HashMap 多线程死循环了解吗</h4><p>在 JDK1.8 之前，多线程的情况下，当一个桶位中有多个元素需要进行扩容，执行的<strong>头插法</strong>会导致链表中的节点指向错误，从而形成一个环形链表，死循环。</p>
+<p>在 JDK1.8 之后，使用的是<strong>尾插法，</strong>新的元素永远在尾部，能避免死循环，但是多线程情况下还是使用 ConcurrentHashMap 合适。</p>
+<h4 id="HashMap-为什么线程不安全"><a href="#HashMap-为什么线程不安全" class="headerlink" title="HashMap 为什么线程不安全"></a>HashMap 为什么线程不安全</h4><ul>
+<li>多线程情况下，会导致<strong>数据丢失。</strong></li>
+<li>JDK1.8 中，多个 KV 对有可能被分配到同一个桶中，多线程 put 的话会有数据被覆盖的风险。</li>
+</ul>
+<h3 id="ConcurrentHashMap了解多少？"><a href="#ConcurrentHashMap了解多少？" class="headerlink" title="ConcurrentHashMap了解多少？"></a>ConcurrentHashMap了解多少？</h3><blockquote>
+<ul>
+<li>相对于普通的HashMap，它提供了一种线程安全的HashMap实现。 底层数据结构是Node数据 + 链表&#x2F;红黑树，通过 synchronized + CAS 来实现线程安全</li>
+</ul>
+</blockquote>
+<h4 id="JDK1-7"><a href="#JDK1-7" class="headerlink" title="JDK1.7"></a>JDK1.7</h4><blockquote>
+<p>采用分段锁机制，一个Segment数组，相当于每个Segment都是一个HashMap（但是<strong>没有红黑树</strong> 只有链表），Segment之间相互不会受到影响</p>
+</blockquote>
+<ul>
+<li><p>put 流程</p>
+<ol>
+<li>计算hash 定位到segment 为空就初始化</li>
+<li>使用<strong>ReentrantLock</strong>加锁，获取锁失败旧尝试自旋，自旋超过次数旧阻塞获取保证一定成功</li>
+<li>遍历HashEntry，和HashMap一样，尝试插入进node</li>
+</ol>
+</li>
+<li><p>get 流程</p>
+<p>​	get很简单，key通过hash定位到segment，再遍历链表定位到具体元素（注意：value是volatile的 所以get无需加锁）</p>
+</li>
+</ul>
+<h4 id="JDK1-8"><a href="#JDK1-8" class="headerlink" title="JDK1.8"></a>JDK1.8</h4><blockquote>
+<p>数据结构和HashMap是一样的，<strong>数组+链表+红黑树</strong>。它实现线程安全的关键点在于put流程</p>
+</blockquote>
+<ul>
+<li><p>put 流程</p>
+<ol>
+<li>首先计算hash，遍历node数组，如果node是空的话，就通过 CAS+自旋 的方式初始化</li>
+<li>如果当前数组位置是空则直接通过 CAS自旋 写入数据</li>
+<li>如果hash&#x3D;&#x3D;MOVED，说明需要扩容，执行扩容</li>
+<li>如果都不满足，就使用synchronized写入数据，写入数据同样判断链表、红黑树，链表写入和HashMap的方式一样，hash一样就覆盖，反之就尾插法，链表长度超过8就转换成红黑树</li>
+</ol>
+</li>
+<li><p>get 流程</p>
+<p>get很简单，无锁化读取，和HashMap的get流程基本相同</p>
+</li>
+<li><p>JDK1.8 之后锁的颗粒度更细，只会锁当前链表或者红黑树的首节点，只要 Hash 不冲突，并不会产生并发也不影响其他 Node 的读写。</p>
+</li>
+</ul>
 <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><blockquote>
-<p>Spring 是一个<strong>轻量级</strong>、<strong>非入侵式</strong>的<strong>控制反转 (IoC)</strong> 和**面向切面 (AOP)**的框架</p>
+<p>Spring 是一款开源的轻量级 Java 开发框架，旨在提高开发人员的开发效率以及系统的可维护性。</p>
 </blockquote>
 <h3 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h3><blockquote>
 <p>使用IOC最主要的作用就是<strong>解耦</strong>，不再关心对象之间的依赖</p>
 </blockquote>
 <ul>
-<li>IOC(Inversion of Control)：<strong>控制反转</strong>，控制对象生命周期的不再是引用它的对象，而是容器，由容器来负责控制对象的生命周期和对象间的关系</li>
+<li>IOC(Inversion of Control)：<strong>控制反转</strong>，控制对象生命周期的不再是引用它的对象，而是容器，由容器来负责控制对象的生命周期和对象间的关系（将对象管理的权力交给Spring）</li>
 <li>比如当我们需要一个接口的实现时，由它根据配置文件来决定到底给我们哪一个实现类，这样，我们就可以不用再关心我们要去使用哪一个实现类了</li>
 </ul>
 <h3 id="DI"><a href="#DI" class="headerlink" title="DI"></a>DI</h3><blockquote>
@@ -812,6 +972,15 @@
 <h4 id="Autowired和-Resourse有什么区别？"><a href="#Autowired和-Resourse有什么区别？" class="headerlink" title="@Autowired和@Resourse有什么区别？"></a>@Autowired和@Resourse有什么区别？</h4><ul>
 <li>@Autowird 是Spring提供的，默认是 byType 的，优先匹配类型注入 Bean。</li>
 <li>@Resource 是JDK提供的，默认是 ByName 的，如果找不到相对应的 Name 时，才会转成 byType。</li>
+</ul>
+<h4 id="Bean是线程安全的吗？"><a href="#Bean是线程安全的吗？" class="headerlink" title="Bean是线程安全的吗？"></a>Bean是线程安全的吗？</h4><ul>
+<li>按原理来说是线程不安全的，通常 bean 的作用域是 Singleton 单例的，会存在资源的竞争。</li>
+<li>大部分的 Bean 都是无状态的(都是不可变的成员变量)，既然是无状态的，也不存在安不安全的问题了。</li>
+<li>解决方案：<ul>
+<li>避免定义可变的成员变量。</li>
+<li>在类中定义 ThreadLocal，将可变变量放到ThreadLocal里。</li>
+</ul>
+</li>
 </ul>
 <h4 id="循环依赖？"><a href="#循环依赖？" class="headerlink" title="循环依赖？"></a>循环依赖？</h4><blockquote>
 <p>简单来说就是自己依赖自己，或者和别的Bean相互依赖（只存在于<strong>单例模式</strong>，原型模式会抛出异常）</p>
@@ -909,6 +1078,18 @@
 </ul>
 </li>
 </ul>
+<h3 id="BeanFactory-和-FactoryBean-和-ApplicationContext-了解吗？"><a href="#BeanFactory-和-FactoryBean-和-ApplicationContext-了解吗？" class="headerlink" title="BeanFactory 和 FactoryBean 和 ApplicationContext 了解吗？"></a>BeanFactory 和 FactoryBean 和 ApplicationContext 了解吗？</h3><p><strong>前者</strong></p>
+<ul>
+<li>BeanFactory：管理 Bean 的容器，Spring 生成的 Bean 都是通过这个接口实现管理的。</li>
+<li>FactoryBean：用于创建复杂的 Bean，可以在创建 Bean 实例的时候提供更高的灵活性</li>
+</ul>
+<p><strong>后者</strong></p>
+<ul>
+<li>BeanFactory 是 Spring 中最底层的接口，包含各种 Bean 的定义、管理 Bean 的加载、初始化；ApplicationContext 接口是前者的派生，提供了更多功能入：国际化、资源文件统一访问、同时加载多个配置文件等。</li>
+<li>BeanFactory 是延迟加载的方式注入 Bean 的，当调用了 getBean() 的时候，才对 Bean 进行加载实例化。而后者是容器启动的时候就一次性加载全部的 Bean。</li>
+<li>创建方式的区别。BeanFactory通常以编程的方式被创建，ApplicationContext还能以声明的方式创建，如使用ContextLoader。</li>
+<li>注册方式的区别。BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者之间的区别是：BeanFactory需要手动注册，而ApplicationContext则是自动注册。</li>
+</ul>
 <h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h4 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h4><ul>
 <li>DispatcherServlet：核心中央处理器，负责接受请求、分发，并且响应客户端。</li>
 <li>HandlerMapping：处理器映射器，根据 URL 匹配对应的 Handler，并且将请求涉及的拦截器与 Handler 封装。</li>
@@ -973,13 +1154,23 @@
 <li><strong>header</strong>：<strong>自定义消息头</strong>的key-value来判断是否发送到绑定的队列（性能很差，一般不用）</li>
 </ul>
 <h4 id="什么是死信队列？"><a href="#什么是死信队列？" class="headerlink" title="什么是死信队列？"></a>什么是死信队列？</h4><blockquote>
-<p>消费失败的消息存放的队列</p>
+<p>存储那些不能被消费者成功消费并且被“拒绝”的消息队列。当队列消息达到限制、消息被拒、消息超过存活时间都会成为死信息，安排进入死信队列。</p>
 </blockquote>
 <p>消费失败的原因：</p>
 <ul>
 <li>消息被拒绝且消息没有重新入队</li>
 <li>消息超时未被消费（超过设置的TTL）</li>
 <li>队列满了（达到最大队列长度）</li>
+</ul>
+<h4 id="什么是延迟队列？"><a href="#什么是延迟队列？" class="headerlink" title="什么是延迟队列？"></a>什么是延迟队列？</h4><blockquote>
+<p>延迟队列指的是存储对应的延迟消息，消息被发送之后，等待特定时间，消费者才能拿到这个消息。</p>
+</blockquote>
+<ul>
+<li>实现方式<ul>
+<li>使用死信队列 + TTL 实现。</li>
+<li>高版本的 RabbitMQ 中提供了延迟队列插件</li>
+</ul>
+</li>
 </ul>
 <h3 id="🌟如何保证消息可靠性（不丢失）？"><a href="#🌟如何保证消息可靠性（不丢失）？" class="headerlink" title="🌟如何保证消息可靠性（不丢失）？"></a>🌟如何保证消息可靠性（不丢失）？</h3><blockquote>
 <p>消息丢失场景：生产者 -&gt; MQ、MQ本身存储的消息、MQ -&gt; 消费者</p>
@@ -1094,7 +1285,7 @@
 <li>外键支持：MyISAM不支持，InnoDB支持</li>
 </ol>
 <h2 id="🌟索引"><a href="#🌟索引" class="headerlink" title="🌟索引"></a>🌟索引</h2><h3 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h3><blockquote>
-<p>索引就好像我们<strong>书的目录</strong>，每本书都有一个目录用于我们快速定位我们想要的内容在哪一页，索引也是，通过建立索引，就可以根据索引来快速找到想要的一条记录，大大提高查询效率</p>
+<p>索引是一种用于快速查询和检索数据的数据结构</p>
 </blockquote>
 <h4 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h4><ul>
 <li>单列索引<ul>
@@ -1125,12 +1316,22 @@
 </ul>
 <h3 id="🌟聚簇索引与非聚簇索引的区别？"><a href="#🌟聚簇索引与非聚簇索引的区别？" class="headerlink" title="🌟聚簇索引与非聚簇索引的区别？"></a>🌟聚簇索引与非聚簇索引的区别？</h3><blockquote>
 <p>聚簇索引不是一种新的索引，而是而是一种数据存储方式</p>
-<p> 聚簇表示数据行和相邻的键值紧凑地存储在一起</p>
+<p>聚簇表示数据行和相邻的键值紧凑地存储在一起</p>
 </blockquote>
+<ul>
+<li>主键索引(聚簇索引)：<ul>
+<li>叶子节点存储的是实际的数据。</li>
+</ul>
+</li>
+<li>二级索引(非聚簇索引)：<ul>
+<li>叶子节点存储的是主键的值。</li>
+<li>查询的时候大概率需要回表操作，拿着找到的主键去主键索引找到实际的数据。</li>
+</ul>
+</li>
+</ul>
 <p>可以这么说：</p>
 <ul>
 <li><p>索引的数据结构是树，聚簇索引的索引和数据存储在一棵树上，树的叶子节点就是数据，非聚簇索引索引和数据不在一棵树上</p>
-<p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240413174535121.png" alt="image-20240413174535121"></p>
 </li>
 <li><p>聚簇索引：物理存储按照索引排序；非聚集索引：物理存储不按照索引排序</p>
 </li>
@@ -1238,8 +1439,7 @@
 </li>
 </ul>
 <p><strong>这种通过「版本链」来控制并发事务访问同一个记录时的行为就叫 MVCC（多版本并发控制）</strong></p>
-<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240413175857114.png" alt="image-20240413175857114"></p>
-<h3 id="🌟InnoDB里的行锁"><a href="#🌟InnoDB里的行锁" class="headerlink" title="🌟InnoDB里的行锁"></a>🌟InnoDB里的行锁</h3><blockquote>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><h3 id="🌟InnoDB里的行锁"><a href="#🌟InnoDB里的行锁" class="headerlink" title="🌟InnoDB里的行锁"></a>🌟InnoDB里的行锁</h3><blockquote>
 <p>InnoDB是支持行级锁的，而MyISAM并不支持行级锁</p>
 <p>InnoDB的<strong>行锁是基于索引</strong>的，而不是基于整个表。这意味着<strong>只有在通过索引访问数据时，InnoDB才会使用行级锁</strong>。如果没有合适的索引，InnoDB会使用表级锁</p>
 </blockquote>
@@ -1319,11 +1519,14 @@
 </li>
 </ol>
 <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="基础-1"><a href="#基础-1" class="headerlink" title="基础"></a>基础</h2><h3 id="Redis都有什么数据结构？"><a href="#Redis都有什么数据结构？" class="headerlink" title="Redis都有什么数据结构？"></a>Redis都有什么数据结构？</h3><ul>
-<li>string 字符串</li>
-<li>hash 哈希</li>
-<li>list 列表</li>
-<li>set 集合</li>
-<li>zset 有序集合</li>
+<li><strong>string 字符串</strong>： 基于 SDS 动态字符串组成，通过动态调整长度节省内存。</li>
+<li><strong>hash 哈希</strong>：基于数组 + 链表实现的键值对映射表，kv 都是 String 类型。</li>
+<li><strong>list 列表</strong>：基于双向链表实现。</li>
+<li><strong>set 集合</strong>：和 java 的 Set 一样，元素不可重复，提供交集、并集等操作。</li>
+<li>zset 有序集合：相比于 Set 类型，提供了权重参数，可以进行排序，还可以范围查找。</li>
+<li><strong>Bitmap</strong>：存储了连续的二进制数字(01010101100)，因为8 个 bit 可以组成一个 byte，所以能节省很大的存储空间。</li>
+<li><strong>HyperLoglog</strong>：数据量巨大的技术场景(百万级以上)。</li>
+<li><strong>Geospatial</strong>：GEO，地理位置类型，存储了地理位置坐标，基于 Sorted Set 实现，可以完成附近的人功能。</li>
 </ul>
 <h3 id="Redis可以用来干什么？"><a href="#Redis可以用来干什么？" class="headerlink" title="Redis可以用来干什么？"></a>Redis可以用来干什么？</h3><ol>
 <li>🌟<strong>缓存</strong>：最广泛的应用，降低数据库压力 提高响应速度</li>
@@ -1346,7 +1549,7 @@
 <p>在 Redis 6.0 版本之后，也<strong>采用了多个 I&#x2F;O 线程来处理网络请求</strong>，这是因为随着网络硬件的性能提升，Redis 的性能瓶颈有时会出现在网络 I&#x2F;O 的处理上</p>
 <p><strong>但是对于命令的执行，Redis 仍然使用单线程来处理</strong></p>
 </blockquote>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="🌟🌟🌟跳跃表是如何实现的？原理？"><a href="#🌟🌟🌟跳跃表是如何实现的？原理？" class="headerlink" title="🌟🌟🌟跳跃表是如何实现的？原理？"></a>🌟🌟🌟跳跃表是如何实现的？原理？</h3><blockquote>
+<h2 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="🌟🌟🌟跳跃表是如何实现的？原理？"><a href="#🌟🌟🌟跳跃表是如何实现的？原理？" class="headerlink" title="🌟🌟🌟跳跃表是如何实现的？原理？"></a>🌟🌟🌟跳跃表是如何实现的？原理？</h3><blockquote>
 <p>Redis 只有 Zset 对象的底层实现用到了跳表，跳表的优势是能支持平均 O(logN) 复杂度的节点查找</p>
 <p>zset 结构体里有两个数据结构：一个是跳表，一个是哈希表。这样的好处是既能进行高效的范围查询，也能进行高效单点查询</p>
 </blockquote>
@@ -1793,93 +1996,6 @@
 <h4 id="🌟🌟🌟那你实际有没有用过呢？"><a href="#🌟🌟🌟那你实际有没有用过呢？" class="headerlink" title="🌟🌟🌟那你实际有没有用过呢？"></a>🌟🌟🌟那你实际有没有用过呢？</h4><p>有的，在<strong>校园论坛</strong>中，在实现<strong>定时实现将Redis中的点赞收藏数据写入MySQL</strong>功能时，利用线程池来完成这个<strong>定时任务</strong>，用的是<strong>ScheduledThreadPool</strong></p>
 <ul>
 <li>这样就不会每次执行定时任务都创建一个新线程，加<strong>叙述线程池的优点</strong></li>
-</ul>
-<h1 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h1><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240307225224978.png" alt="image-20240307225224978"></p>
-<h3 id="🌟ArrayList和LinkedList的区别？"><a href="#🌟ArrayList和LinkedList的区别？" class="headerlink" title="🌟ArrayList和LinkedList的区别？"></a>🌟ArrayList和LinkedList的区别？</h3><ul>
-<li>数据结构不同（前者<strong>动态数组</strong>，后者<strong>双向链表</strong>）</li>
-<li>前者利于查找、后者利于增删</li>
-<li>是否支持随机访问</li>
-<li>内存占用（是否连续）</li>
-</ul>
-<h3 id="🌟快速失败-和-安全失败？"><a href="#🌟快速失败-和-安全失败？" class="headerlink" title="🌟快速失败 和 安全失败？"></a>🌟快速失败 和 安全失败？</h3><blockquote>
-<p>两种“失败”源于<strong>在遍历集合的同时有对集合做修改</strong>，尤其是在面对<strong>多线程环境下</strong>的<strong>并发修改</strong>时所采取的不同策略</p>
-</blockquote>
-<h4 id="快速失败"><a href="#快速失败" class="headerlink" title="快速失败"></a>快速失败</h4><blockquote>
-<p>位于<code>java.util</code>包下的<code>ArratList / LinkedList / HashMap</code>等都采用快速失败</p>
-</blockquote>
-<ul>
-<li><strong>现象</strong>：如果在迭代过程中有线程（包括本身）对集合进行了修改（添加&#x2F;删除&#x2F;更新），那么会立刻检测到这个修改并<strong>迅速抛出异常</strong></li>
-<li><strong>原理</strong>：通过<strong>维护一个内部计数器</strong>（如<code>modCount</code>）来跟踪集合结构的变化。每次对集合进行结构修改时，这个计数器会递增，迭代器在每次调用<code>next()</code>或<code>remove()</code>方法前检查当前计数器值与遍历开始时记录的预期值是否一致。如果不一致，说明集合已被并发修改，于是立即抛出异常</li>
-<li><strong>如何解决</strong>？<ul>
-<li><strong>删除元素</strong>：使用迭代器的<code>remove()</code>方法 &#x2F; 使用集合自带的<code>removeIf()</code>方法</li>
-<li><strong>多线程</strong>：加锁修改，<strong>使用并发集合</strong>（如<code>CopyOnWriteArrayList / ConcurrentHashMap</code>等）</li>
-</ul>
-</li>
-</ul>
-<h4 id="安全失败"><a href="#安全失败" class="headerlink" title="安全失败"></a>安全失败</h4><blockquote>
-<p>位于<code>java.util.concurrent</code>包下的<code>CopyOnWriteArrayList / ConcurrentHashMap</code>等都采用安全失败</p>
-</blockquote>
-<ul>
-<li><strong>现象</strong>：在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历</li>
-<li><strong>原理</strong>：由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中所作的修改并不能被迭代器检测到，所以不会触发<strong>快速失败</strong>而抛出异常</li>
-<li><strong>缺点</strong>：迭代器并不能访问到修改后的内容（开始遍历的那一刻就一直拿的是原始集合）</li>
-</ul>
-<h3 id="讲讲HashMap？"><a href="#讲讲HashMap？" class="headerlink" title="讲讲HashMap？"></a>讲讲HashMap？</h3><h4 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h4><p>数组+链表+红黑树</p>
-<h4 id="红黑树特点"><a href="#红黑树特点" class="headerlink" title="红黑树特点"></a>红黑树特点</h4><ul>
-<li><strong>节点颜色</strong>：每个节点或者是黑色，或者是红色</li>
-<li><strong>根节点和叶子节点</strong>：根节点和叶子节点（<code>NIL</code>）是黑色的</li>
-<li><strong>颜色规则</strong>：如果一个节点是红色的，则它的父节点&#x2F;子节点必须是黑色的</li>
-<li><strong>路径规则</strong>：从任意节点到其每个叶子节点的路径都包含相同数量的黑色节点</li>
-</ul>
-<h4 id="HashMap哈希函数怎么设计的？"><a href="#HashMap哈希函数怎么设计的？" class="headerlink" title="HashMap哈希函数怎么设计的？"></a>HashMap哈希函数怎么设计的？</h4><blockquote>
-<p>这样设计达到高位低位混合的效果，增加哈希值随机性，降低哈希冲突概率</p>
-</blockquote>
-<ul>
-<li>先通过hashCode获得key的哈希值（32位）</li>
-<li>再将哈希值右移16位，与哈希值本身<strong>异或</strong></li>
-</ul>
-<h4 id="HashMap和Hashtable的区别？"><a href="#HashMap和Hashtable的区别？" class="headerlink" title="HashMap和Hashtable的区别？"></a>HashMap和Hashtable的区别？</h4><p>都实现了Map接口，但是有以下不同：</p>
-<ul>
-<li>HashMap可以接受<code>null</code>的key和value，Hashtable不行</li>
-<li>HashMap是非线程安全的，HashTable是线程安全的</li>
-<li>Hashtable很多方法是同步方法，在单线程环境下它比HashMap要慢</li>
-<li>哈希值的使用不同，HashTable直接使用对象的hashCode，而HashMap重新计算hash值</li>
-</ul>
-<h4 id="LinkedHashMap和TreeMap是如何保证有序的？"><a href="#LinkedHashMap和TreeMap是如何保证有序的？" class="headerlink" title="LinkedHashMap和TreeMap是如何保证有序的？"></a>LinkedHashMap和TreeMap是如何保证有序的？</h4><p>前者双向链表，后者红黑树</p>
-<h3 id="ConcurrentHashMap了解多少？"><a href="#ConcurrentHashMap了解多少？" class="headerlink" title="ConcurrentHashMap了解多少？"></a>ConcurrentHashMap了解多少？</h3><blockquote>
-<p>ConcurrentHashmap线程安全在<strong>jdk1.7</strong>版本是基于<strong>分段锁(Segment数组，ReentrantLock)<strong>实现，在</strong>jdk1.8</strong>是基于 <strong>CAS + Synchronized</strong>实现</p>
-</blockquote>
-<h4 id="JDK1-7"><a href="#JDK1-7" class="headerlink" title="JDK1.7"></a>JDK1.7</h4><blockquote>
-<p>采用分段锁机制，一个Segment数组，相当于每个Segment都是一个HashMap（但是<strong>没有红黑树</strong> 只有链表），Segment之间相互不会受到影响</p>
-</blockquote>
-<ul>
-<li><p>put 流程</p>
-<ol>
-<li>计算hash 定位到segment 为空就初始化</li>
-<li>使用<strong>ReentrantLock</strong>加锁，获取锁失败旧尝试自旋，自旋超过次数旧阻塞获取保证一定成功</li>
-<li>遍历HashEntry，和HashMap一样，尝试插入进node</li>
-</ol>
-</li>
-<li><p>get 流程</p>
-<p>​	get很简单，key通过hash定位到segment，再遍历链表定位到具体元素（注意：value是volatile的 所以get无需加锁）</p>
-</li>
-</ul>
-<h4 id="JDK1-8"><a href="#JDK1-8" class="headerlink" title="JDK1.8"></a>JDK1.8</h4><blockquote>
-<p>数据结构和HashMap是一样的，<strong>数组+链表+红黑树</strong>。它实现线程安全的关键点在于put流程</p>
-</blockquote>
-<ul>
-<li><p>put 流程</p>
-<ol>
-<li>首先计算hash，遍历node数组，如果node是空的话，就通过 CAS+自旋 的方式初始化</li>
-<li>如果当前数组位置是空则直接通过 CAS自旋 写入数据</li>
-<li>如果hash&#x3D;&#x3D;MOVED，说明需要扩容，执行扩容</li>
-<li>如果都不满足，就使用synchronized写入数据，写入数据同样判断链表、红黑树，链表写入和HashMap的方式一样，hash一样就覆盖，反之就尾插法，链表长度超过8就转换成红黑树</li>
-</ol>
-<p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240402151559544.png" alt="image-20240402151559544"></p>
-</li>
-<li><p>get 流程</p>
-<p>get很简单，无锁化读取，和HashMap的get流程基本相同</p>
-</li>
 </ul>
 <h1 id="🌟计算机网络"><a href="#🌟计算机网络" class="headerlink" title="🌟计算机网络"></a>🌟计算机网络</h1><h3 id="说说各层结构"><a href="#说说各层结构" class="headerlink" title="说说各层结构"></a>说说各层结构</h3><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240326161738446.png" alt="image-20240326161738446"></p>
 <h3 id="🌟从浏览器地址栏输入URL到显示页面都发生了什么？"><a href="#🌟从浏览器地址栏输入URL到显示页面都发生了什么？" class="headerlink" title="🌟从浏览器地址栏输入URL到显示页面都发生了什么？"></a>🌟从浏览器地址栏输入URL到显示页面都发生了什么？</h3><ol>
