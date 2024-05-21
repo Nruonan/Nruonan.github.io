@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="zhennan-Blog">
     <meta name="description" content="介绍一下你的XX项目？介绍是什么？
-校园论坛是一个在线论坛交流网站，实现用户发帖交流评论，实现了富文本发帖、回帖以及楼中楼回复、点赞收藏、消息通知等功能
+青轻社区是一个在线社区交流网站，实现用户发帖交流评论，实现了富文本发帖、回帖以及楼中楼回复、点赞收藏、消息通知等功能
 服务器监控运维系统是一个实时在线监控服务器运行状态以及详细信息的网站，能够做到服务器状">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -403,8 +403,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="介绍一下你的XX项目？"><a href="#介绍一下你的XX项目？" class="headerlink" title="介绍一下你的XX项目？"></a>介绍一下你的XX项目？</h1><h3 id="介绍是什么？"><a href="#介绍是什么？" class="headerlink" title="介绍是什么？"></a>介绍是什么？</h3><ul>
-<li>校园论坛是一个在线论坛交流网站，实现<strong>用户发帖交流评论</strong>，实现了<strong>富文本发帖、回帖以及楼中楼回复</strong>、<strong>点赞收藏</strong>、<strong>消息通知</strong>等功能</li>
+<li>青轻社区是一个在线社区交流网站，实现<strong>用户发帖交流评论</strong>，实现了<strong>富文本发帖、回帖以及楼中楼回复</strong>、<strong>点赞收藏</strong>、<strong>消息通知</strong>等功能</li>
 <li>服务器监控运维系统是一个实时在线监控服务器运行状态以及详细信息的网站，能够做到<strong>服务器状态和信息监控</strong>、<strong>一键SSH远程登录</strong>、<strong>子用户分配具体服务器</strong>等操作</li>
+<li>青轻小镇是一个综合商铺的分享平台，实现了用户登录注册，商铺查询，<strong>笔记发布</strong>，优惠券抢购等功能</li>
 </ul>
 <h3 id="介绍主体功能？"><a href="#介绍主体功能？" class="headerlink" title="介绍主体功能？"></a>介绍主体功能？</h3><h4 id="校园论坛"><a href="#校园论坛" class="headerlink" title="校园论坛"></a>校园论坛</h4><ul>
 <li><p>进入系统前的<strong>注册 &#x2F; 登录</strong>功能（JWT &#x2F; rabbitmq发验证码 &#x2F; redis存验证码）</p>
@@ -420,6 +421,10 @@
 <li>客户端：安装在被监控主机上，携带token向服务端注册后定时自动进行数据收集并上报</li>
 <li>网页端：展示实时最新数据以及历史一小时的折线图数据等等，并且可以进行SSH连接客户端</li>
 <li>另外：管理员可以在网页端进行子用户创建并为其分配可操作的服务器</li>
+</ul>
+<h4 id="青轻肖镇"><a href="#青轻肖镇" class="headerlink" title="青轻肖镇"></a>青轻肖镇</h4><ul>
+<li>优惠券抢购 </li>
+<li>点赞关注功能</li>
 </ul>
 <h3 id="🌟项目有什么难点？"><a href="#🌟项目有什么难点？" class="headerlink" title="🌟项目有什么难点？"></a>🌟项目有什么难点？</h3><h4 id="论坛交互内容（点赞和收藏）的数据存储问题"><a href="#论坛交互内容（点赞和收藏）的数据存储问题" class="headerlink" title="论坛交互内容（点赞和收藏）的数据存储问题"></a>论坛交互内容（点赞和收藏）的数据存储问题</h4><blockquote>
 <p>由于论坛交互数据(如点赞、收藏等) 的更新会非常频繁，更新信息实时到MySQL不太现实，所以需要用Redis做缓冲并在合适的时机一次性入库一段时间内的全部数据</p>
@@ -593,6 +598,13 @@
 <li>雪花算法是一种分布式 ID 生成方案，它可以生成一个长度为 <strong>64 位的唯一ID</strong>，其中包含了<strong>时间戳</strong>、<strong>数据中心 ID</strong> 和<strong>机器 ID</strong> 等信息</li>
 <li>编写请求日志过滤器，在每个HTTP请求之前，获取请求的接口URL、参数、远程IP地址、用户角色、ID等</li>
 </ul>
+<h3 id="过滤器和拦截器的区别"><a href="#过滤器和拦截器的区别" class="headerlink" title="过滤器和拦截器的区别"></a>过滤器和拦截器的区别</h3><ol>
+<li>出身不同：过滤器来自于 Servlet，而拦截器来自于 Spring 框架</li>
+<li>触发时机不同：<strong>请求进入容器 &gt; 进入过滤器 &gt; 进入 Servlet &gt; 进入拦截器 &gt; 执行控制器（Controller）</strong></li>
+<li>实现不同：<strong>过滤器是基于方法回调实现的</strong>，<strong>拦截器是基于动态代理（底层是反射）实现的</strong>。</li>
+<li>支持的项目类型不同：过滤器是 Servlet 规范中定义的，所以<strong>过滤器要依赖 Servlet 容器，它只能用在 Web 项目中</strong>；而<strong>拦截器是 Spring 中的一个组件，因此拦截器既可以用在 Web 项目中，同时还可以用在 Application 或 Swing 程序中</strong>。</li>
+<li>使用的场景不同：因为拦截器更接近业务系统，所以<strong>拦截器主要用来实现项目中的业务判断的</strong>，比如：登录判断、权限判断、日志记录等业务。 而<strong>过滤器通常是用来实现通用功能过滤的</strong>，比如：敏感词过滤、字符集编码设置、响应数据压缩等功能。</li>
+</ol>
 <h2 id="服务器监控运维系统-1"><a href="#服务器监控运维系统-1" class="headerlink" title="服务器监控运维系统"></a>服务器监控运维系统</h2><h3 id="客户端用于定时任务调度的SpringQuartz是什么？怎么用的？"><a href="#客户端用于定时任务调度的SpringQuartz是什么？怎么用的？" class="headerlink" title="客户端用于定时任务调度的SpringQuartz是什么？怎么用的？"></a>客户端用于定时任务调度的SpringQuartz是什么？怎么用的？</h3><ul>
 <li><p>是基于Spring的一个功能强大、开源的<strong>任务调度框架</strong>，核心要素主要为：</p>
 <ul>
@@ -987,13 +999,14 @@
 <p>注意：Spring可以自动解决：AB均采用属性注入、先构造器注入后属性注入，无法解决均构造器注入</p>
 <p>Spring解决循环依赖主要依赖于其内部的<strong>“三级缓存”</strong>机制</p>
 </blockquote>
+<p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/1714998833431.png" alt="1714998833431"></p>
 <ul>
 <li><p>Spring容器初始化Bean的过程：实例化、属性赋值（注入就发生在这一步）、初始化</p>
 </li>
 <li><p>“三级缓存”机制</p>
 <ul>
 <li><strong>一级缓存</strong>：存放完全初始化好（三个步骤都完成）的单例Bean对象</li>
-<li><strong>二级缓存</strong>：存放提前曝光的原始（仅完成了实例化，没有属性赋值）单例Bean对象</li>
+<li><strong>二级缓存</strong>：存放完成了实例化但是并未初始化的单例对象。</li>
 <li><strong>三级缓存</strong>：存放能够创建Bean实例的ObjectFactory对象</li>
 </ul>
 </li>
@@ -1359,6 +1372,8 @@
 <li>联合索引时未遵循<strong>最左匹配原则</strong></li>
 <li>where查询时，<strong>索引列 or 非索引列</strong></li>
 </ul>
+<h4 id="最左前缀法则"><a href="#最左前缀法则" class="headerlink" title="最左前缀法则"></a>最左前缀法则</h4><p>如果索引关联了多列（联合索引），要遵守最左前缀法则，最左前缀法则指的是查询从索引的最左列开始，并且不跳过索引中的列。<br>如果跳跃某一列，索引将部分失效（后面的字段索引失效）。</p>
+<p>联合索引中，出现范围查询（&lt;, &gt;），范围查询<strong>右侧的列索引失效。</strong>可以用&gt;&#x3D;或者&lt;&#x3D;来规避索引失效问题。</p>
 <h3 id="为什么MySQL要采用B-树作为默认索引底层结构？（对比B-Tree-B-Tree-二叉树-hash）"><a href="#为什么MySQL要采用B-树作为默认索引底层结构？（对比B-Tree-B-Tree-二叉树-hash）" class="headerlink" title="为什么MySQL要采用B+树作为默认索引底层结构？（对比B+Tree&#x2F;B Tree&#x2F;二叉树&#x2F;hash）"></a>为什么MySQL要采用B+树作为默认索引底层结构？（对比B+Tree&#x2F;B Tree&#x2F;二叉树&#x2F;hash）</h3><blockquote>
 <p>B+ 树非叶子节点仅存储索引，所有数据都在叶子节点</p>
 <p>B 树 每个节点都可以存索引和数据</p>
