@@ -556,14 +556,22 @@
 </li>
 </ul>
 <h3 id="🌟为什么要用RabbitMQ？"><a href="#🌟为什么要用RabbitMQ？" class="headerlink" title="🌟为什么要用RabbitMQ？"></a>🌟为什么要用RabbitMQ？</h3><ul>
-<li>🌟🌟🌟任何相关MQ的问题，优先答<strong>MQ的三大作用：异步、解耦、削峰</strong></li>
-<li><strong>相比多线程</strong><ul>
-<li><strong>消息持久化</strong>，提高了系统的稳定性，系统down了，但消息存储在外部，不会丢失</li>
+<li><p>🌟🌟🌟任何相关MQ的问题，优先答<strong>MQ的三大作用：异步、解耦、削峰</strong></p>
+<ul>
+<li><strong>异步</strong>，将消息写入消息队列，非必要的业务逻辑以异步的方式运行，不影响主流程业务。</li>
 <li><strong>削峰填谷</strong>，当系统压力较大时，消息可以缓存起来逐渐处理，从而避免系统崩溃或过载</li>
-<li><strong>解耦和异步通信</strong>，消息队列将不同模块间的通信解耦，降低系统复杂度，且能处理高并发请求</li>
+<li><strong>解耦</strong>，当一个系统较为复杂，可以降低它的耦合度，提高他的扩展性。</li>
 </ul>
 </li>
-<li><strong>对比其他主流消息队列</strong><ul>
+<li><p><strong>相比多线程</strong></p>
+<ul>
+<li><strong>消息持久化</strong>，提高了系统的稳定性，系统down了，但消息存储在外部，不会丢失</li>
+<li><strong>削峰填谷</strong>，当系统压力较大时，消息可以缓存起来逐渐处理，从而避免系统崩溃或过载</li>
+<li><strong>解耦</strong>，当一个系统较为复杂，可以降低它的耦合度，提高他的扩展性。</li>
+</ul>
+</li>
+<li><p><strong>对比其他主流消息队列</strong></p>
+<ul>
 <li><strong>简单易用</strong>：RabbitMQ 提供了简单易用的API，易于上手和部署</li>
 <li><strong>灵活的路由和交换机机制</strong>：可以根据消息的特性和路由规则进行高效的消息分发</li>
 <li><strong>自带的管理界面简单方便，社区活跃度高（文档齐全丰富）</strong></li>
@@ -938,7 +946,7 @@
 </li>
 </ul>
 <h4 id="JDK1-8"><a href="#JDK1-8" class="headerlink" title="JDK1.8"></a>JDK1.8</h4><blockquote>
-<p>数据结构和HashMap是一样的，<strong>数组+链表+红黑树</strong>。它实现线程安全的关键点在于put流程</p>
+<p>数据结构和HashMap是一样的，<strong>数组+链表+红黑树</strong>。通过 synchronized + CAS 来控制。它实现线程安全的关键点在于put流程</p>
 </blockquote>
 <ul>
 <li><p>put 流程</p>
@@ -1297,6 +1305,11 @@
 <li>表的具体行数：MyISAM会在表里自存行数，InnoDB不会</li>
 <li>外键支持：MyISAM不支持，InnoDB支持</li>
 </ol>
+<h2 id="三大范式"><a href="#三大范式" class="headerlink" title="三大范式"></a>三大范式</h2><ul>
+<li><strong>第一范式1NF</strong>：确保数据库表字段的原子性。</li>
+<li><strong>第二范式2NF</strong>：首先要满足第一范式，另外包含两部分内容，一是表必须有一个主键；二是非主键列必须完全依赖于主键，而不能只依赖于主键的一部分。</li>
+<li><strong>第三范式3NF</strong>：首先要满足第二范式，另外非主键列必须直接依赖于主键，不能存在传递依赖。</li>
+</ul>
 <h2 id="🌟索引"><a href="#🌟索引" class="headerlink" title="🌟索引"></a>🌟索引</h2><h3 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h3><blockquote>
 <p>索引是一种用于快速查询和检索数据的数据结构</p>
 </blockquote>
@@ -1403,15 +1416,12 @@
 <li>D持久性：事务提交后，对数据的修改是永久的（通过**redo log(重做机制)**保证）</li>
 </ul>
 <h3 id="并发事务会引发什么问题？"><a href="#并发事务会引发什么问题？" class="headerlink" title="并发事务会引发什么问题？"></a>并发事务会引发什么问题？</h3><ul>
-<li><p>脏读：读到其他事务<strong>未提交的数据</strong></p>
-</li>
-<li><p>幻读：前后读取的<strong>记录数量不一致</strong></p>
-<ul>
+<li>脏读：读到其他事务<strong>未提交的数据</strong>、</li>
+<li>不可重复读：前后<strong>读取的数据不一致</strong></li>
+<li>幻读：前后读取的<strong>记录数量不一致</strong><ul>
 <li>针对<strong>快照读</strong>（普通select语句）：通过<strong>MVCC</strong>方式解决幻读</li>
 <li>针对<strong>当前读</strong>（select···for update语句）：通过<strong>next-key lock（记录锁+间隙锁）</strong>解决幻读</li>
 </ul>
-</li>
-<li><p>不可重复读：前后<strong>读取的数据不一致</strong></p>
 </li>
 </ul>
 <h3 id="事务隔离级别？"><a href="#事务隔离级别？" class="headerlink" title="事务隔离级别？"></a>事务隔离级别？</h3><ul>
@@ -1429,7 +1439,8 @@
 <li><strong>当前读</strong>，读取的是记录的最新版本，并且，当前读返回的记录，都会加上锁，保证其他事务不会再并发修改这条记录</li>
 </ul>
 <p><a href="!%5B%E9%9A%90%E8%97%8F%E5%AD%97%E6%AE%B5%E4%BD%9C%E7%94%A8%5D(https://nruonan.github.io/2024/04/17/mysql/%E9%9A%90%E8%97%8F%E5%AD%97%E6%AE%B5.png">image-20240413172456228</a></p>
-<h4 id="Read-View"><a href="#Read-View" class="headerlink" title="Read View"></a>Read View</h4><p><img src="https://nruonan.github.io/2024/04/17/mysql/%E5%AD%97%E6%AE%B5.png" alt="img"></p>
+<h3 id="Read-View"><a href="#Read-View" class="headerlink" title="Read View"></a>Read View</h3><p>ReadView(读视图)是快照读SQL执行时MVCC提取数据的依据，记录并维护系统当前活跃的事务（未提交的）id。</p>
+<p><img src="https://nruonan.github.io/2024/04/17/mysql/%E5%AD%97%E6%AE%B5.png" alt="img"></p>
 <p>以上四个重要字段：（都是创建该Read View时的数据）</p>
 <ol>
 <li><strong>活跃且未提交</strong>的事务id列表</li>
@@ -1442,7 +1453,7 @@
 <li>tri_id：操作该行数据的事务ID</li>
 <li>roll_ptr：历史版本信息指针（指向旧版本记录）</li>
 </ol>
-<h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><p><img src="/2024/04/29/mian-jing-gao-pin-wen-ti/desktop\面经高频问题.assets\image-20240413150354307.png" alt="image-20240413150354307"></p>
+<h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><p><img src="https://nruonan.github.io/2024/04/17/mysql/%E8%A7%84%E5%88%99.png" alt="img"></p>
 <p>一个事务去访问记录的时候，除了自己更新的总是可见之外，还有以下情况：</p>
 <ul>
 <li>如果该记录的事务ID，<strong>小于Read View中的活跃且未提交的最小事务ID</strong>，表示这个版本的记录是在创建Read View之前已经提交的事务生成的，则该版本记录对当前事务<strong>可见</strong></li>
