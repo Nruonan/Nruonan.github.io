@@ -1135,9 +1135,8 @@
 <li>适配器模式：在 Spring MVC 中的核心组件里就是适配器模式，可以根据不同的Controller 获取到对应类型。</li>
 <li>装试者模式：可以动态地添加额外的属性或行为。</li>
 </ul>
-<h3 id="Spring-Boot？"><a href="#Spring-Boot？" class="headerlink" title="Spring Boot？"></a>Spring Boot？</h3><h4 id="介绍一下SpringBoot，它有哪些优点？"><a href="#介绍一下SpringBoot，它有哪些优点？" class="headerlink" title="介绍一下SpringBoot，它有哪些优点？"></a>介绍一下SpringBoot，它有哪些优点？</h4><ul>
-<li><p>Spring Boot 以<strong>约定大于配置</strong>核心思想开展工作，相比Spring具有很多优势</p>
-</li>
+<h3 id="Spring-Boot？"><a href="#Spring-Boot？" class="headerlink" title="Spring Boot？"></a>Spring Boot？</h3><h4 id="介绍一下SpringBoot，它有哪些优点？"><a href="#介绍一下SpringBoot，它有哪些优点？" class="headerlink" title="介绍一下SpringBoot，它有哪些优点？"></a>介绍一下SpringBoot，它有哪些优点？</h4><p>Springboot用来简化Spring应用的创建、运行、调试、部署等。使用Spring Boot可以做到专注于Spring应用的开发，而无需过多关注XML的配置</p>
+<ul>
 <li><p>内置servlet容器，不需要在服务器部署 tomcat。只需要将项目打成jar包，使用java -jar xxx.jar一键式启动项目</p>
 </li>
 <li><p>SpringBoot提供了starter，把常用库聚合在一起，简化复杂的环境配置，快速搭建spring应用环境</p>
@@ -1450,7 +1449,7 @@
 </ol>
 <h4 id="隐藏列"><a href="#隐藏列" class="headerlink" title="隐藏列"></a>隐藏列</h4><p>隐藏列包含两个：</p>
 <ol>
-<li>tri_id：操作该行数据的事务ID</li>
+<li>trx_id：操作该行数据的事务ID</li>
 <li>roll_ptr：历史版本信息指针（指向旧版本记录）</li>
 </ol>
 <h4 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h4><p><img src="https://nruonan.github.io/2024/04/17/mysql/%E8%A7%84%E5%88%99.png" alt="img"></p>
@@ -1468,6 +1467,7 @@
 <h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><h3 id="🌟InnoDB里的行锁"><a href="#🌟InnoDB里的行锁" class="headerlink" title="🌟InnoDB里的行锁"></a>🌟InnoDB里的行锁</h3><blockquote>
 <p>InnoDB是支持行级锁的，而MyISAM并不支持行级锁</p>
 <p>InnoDB的<strong>行锁是基于索引</strong>的，而不是基于整个表。这意味着<strong>只有在通过索引访问数据时，InnoDB才会使用行级锁</strong>。如果没有合适的索引，InnoDB会使用表级锁</p>
+<p><strong>表级锁是基于非索引字段加的锁</strong>，对当前操作的整张表加锁，实现简单，表级锁和存储引擎无关，MyISAM 和 InnoDB 引擎都支持表级锁。</p>
 </blockquote>
 <h4 id="行锁的类型？"><a href="#行锁的类型？" class="headerlink" title="行锁的类型？"></a>行锁的类型？</h4><blockquote>
 <p>共享锁（S锁）——读读共享、读写互斥（<code>select ··· lock in share mode</code>对读取的记录加共享锁）</p>
