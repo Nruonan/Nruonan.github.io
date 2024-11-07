@@ -6,7 +6,7 @@
   <link href="https://nruonan.github.io/atom.xml" rel="self"/>
   
   <link href="https://nruonan.github.io/"/>
-  <updated>2024-09-20T15:57:47.280Z</updated>
+  <updated>2024-08-24T10:32:20.092Z</updated>
   <id>https://nruonan.github.io/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://nruonan.github.io/2024/09/20/di-yi-ge-ye-mian-shou-xian-zhan-shi-you-hui-quan-fen-4-zhong-lei-xing-yi-chong-yong-jiu-xing-gou-mai-de-yi-chong-ding-shi-qiang-gou-yi-chong-ding-shi-mian-fei-ling-qu-yi-chong-yong-jiu-xing-ling-qu-qi-zhong-gou-mai-de-xu-yao-jin-ru-di-er-ge-ye-mian-dai-zhi-fu-ye-mian-xia-dan-suo-ding-you-hui-quan-zhuang-tai-bing-qie-zhi-fu-ling-qu-cheng-gong-ti-xing-yong-hu/"/>
-    <id>https://nruonan.github.io/2024/09/20/di-yi-ge-ye-mian-shou-xian-zhan-shi-you-hui-quan-fen-4-zhong-lei-xing-yi-chong-yong-jiu-xing-gou-mai-de-yi-chong-ding-shi-qiang-gou-yi-chong-ding-shi-mian-fei-ling-qu-yi-chong-yong-jiu-xing-ling-qu-qi-zhong-gou-mai-de-xu-yao-jin-ru-di-er-ge-ye-mian-dai-zhi-fu-ye-mian-xia-dan-suo-ding-you-hui-quan-zhuang-tai-bing-qie-zhi-fu-ling-qu-cheng-gong-ti-xing-yong-hu/</id>
-    <published>2024-09-20T15:57:47.279Z</published>
-    <updated>2024-09-20T15:57:47.280Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一个页面首先展示优惠券，分4中类型，一种永久性购买的，一种定时抢购，一种定时免费领取，一种永久性领取。其中购买的需要进入第二个页面待支付页面，下单锁定优惠券状态，并且支付。领取成功提醒用户</p><p>第二个大页面需要显示用户订单情况，在此页面可以查询用户可用和不可用的优惠券列表，并且可以退款。退款成功提醒用户</p><p>选做）可以给管理员用户添加一个 设计优惠券的页面，并且设计完，提醒每个用户去抢购。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;第一个页面首先展示优惠券，分4中类型，一种永久性购买的，一种定时抢购，一种定时免费领取，一种永久性领取。其中购买的需要进入第二个页面待支付页面，下单锁定优惠券状态，并且支付。领取成功提醒用户&lt;/p&gt;
-&lt;p&gt;第二个大页面需要显示用户订单情况，在此页面可以查询用户可用和不可用的</summary>
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title></title>
