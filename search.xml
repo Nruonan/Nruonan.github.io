@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/12/09/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Cloud</title>
     <url>/2024/03/16/Cloud%20ALibaba/</url>
     <content><![CDATA[<h2 id="CAP原则"><a href="#CAP原则" class="headerlink" title="CAP原则"></a>CAP原则</h2><p>CAP 原则又称CAP定理，指的是在一个分布式系统中，存在Consistency（一致性）、Availability（可用性）、Partition tolerance（分区容错性），三者不可同时保证，最多只能保证其中的两者。</p>
@@ -2841,7 +2823,9 @@
   <entry>
     <title>面经</title>
     <url>/2024/11/24/%E9%9D%A2%E7%BB%8F/</url>
-    <content><![CDATA[<h2 id="限流工具类怎么实现？"><a href="#限流工具类怎么实现？" class="headerlink" title="限流工具类怎么实现？"></a>限流工具类怎么实现？</h2><p>先介绍主流的几种限流方式：</p>
+    <content><![CDATA[<p>没回答出来用❌标注<br>重复出现用🌟标注</p>
+<h2 id="介绍自己"><a href="#介绍自己" class="headerlink" title="介绍自己"></a>介绍自己</h2><p>我是肖镇楠，26 届学生，目前就读xxx，本科学历，就读的专业是软件工程，很荣幸参加贵公司的面试。 我会的技能是MySQL、Redis、Spring、Spring MVC、Spring Boot、RabbitMQ 等技术栈。我曾经在校参加过 中国机器人及人工智能大赛获得全国二等奖，以及学校一等奖学金。 我使用 Spring boot +  MySQL + Redis + RabbitMQ 总共做过 3 个项目，其中有两个项目我已经写在简历上了并且附上了gitee地址，等会您有任何关于项目或技能点的问题都可以问我。因为我的技术栈和公司的技术栈非常匹配，所以来了之后就能直接干活，大大节省了新人培养成本。</p>
+<h2 id="限流工具类怎么实现？"><a href="#限流工具类怎么实现？" class="headerlink" title="限流工具类怎么实现？"></a>限流工具类怎么实现？</h2><p>先介绍主流的几种限流方式：</p>
 <ul>
 <li><p><strong>固定窗口计数器</strong>，优点是实现简单、易于理解和部署，缺点是可能存在时间不对称以及难以应对突发流量</p>
 </li>
